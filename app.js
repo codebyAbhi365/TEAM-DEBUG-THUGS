@@ -3,13 +3,13 @@ const path = require("path");
 const app = express();
 const PORT = 5000;
 
-const {router}=require(`./routes/app`)
+const router=require(`./routes/app`)
 
 //Connecting MongoDb
 const ConnectTOMongoDB = require("./connections");
 ConnectTOMongoDB();
 
-// app.use(`/`,router)
+app.use('/',router)
 
 //middlewares
 app.use(express.urlencoded({extended:false}));
