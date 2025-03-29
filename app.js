@@ -22,7 +22,7 @@ app.use(cookieParser());
 app.set("view engine" , "ejs");
 app.set("views" , path.resolve("views"));
 
-app.use("/home" , restrictToLoginUserOnly , appRouter);
+app.use("/home" , appRouter);
 app.use("/" , router);
 
 app.listen(PORT, ()=>{

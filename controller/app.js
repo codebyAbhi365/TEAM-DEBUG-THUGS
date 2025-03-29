@@ -15,6 +15,7 @@ async function filecomplain(req, res){
 }
 
 async function showProfile(req, res){
+    
     res.render("profile.ejs", {User});
 }
 
