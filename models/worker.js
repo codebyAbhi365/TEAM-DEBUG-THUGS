@@ -1,5 +1,5 @@
 const express=require(`express`)
-
+const mongoose = require("mongoose")
 // const mongopass=ahcREmAWmQyB9XR4;
 // const newmongopass=useradmin123;
 
@@ -23,6 +23,6 @@ const schema=mongoose.Schema({
     }
 })
 
-const workermodel = mongoose.model(`Worker`,schema)
+const Worker = mongoose.model(`workermodel`,schema)
 
-module.exports = workermodel;
+module.exports = Worker;
