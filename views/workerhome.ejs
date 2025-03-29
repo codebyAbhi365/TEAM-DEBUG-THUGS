@@ -113,7 +113,7 @@
             }
             .bottom-nav {
                 width: 600px;
-                left: 50%;
+               
                 transform: translateX(-50%);
             }
             .image{
@@ -220,28 +220,28 @@
                         <div class="location" style="color: black;" id="locationvalue"><%= complain.Location %></div>
                         <a id="mapLink" href="#" target="_blank" style="color: #007bff; text-decoration: none; font-size: 14px;">Open Location in Google Maps</a>
                     </div>
+                    <!-- <div class="image-placeholder">
+                        <img width="140px" height="120px" src="" alt="" style="border-radius: 8px; object-fit: cover;">
+                    </div> -->
                     <div class="image-placeholder">
-                        <img width="140px" height="120px" src="<%= complain.Image %>" alt="" style="border-radius: 8px; object-fit: cover;">
-                    </div>
+                    <img width="140px" height="120px" src="/uploads/<%= complain.Image %>" alt=""></div>
                 </div>
-                <div class="image-placeholder">
-                <img width="140px" height="120px" src="/uploads/<%= complain.Image %>" alt=""></div>
-
+                
+                <div class="buttons" style="display: flex; justify-content: space-between; margin-top: 10px;">
+                    <button class="btn reject" style="background: #ff4d4d; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer;">Reject</button>
+                    <form action="">
+                        <button class="btn accept" style="background: #10b981; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer;">Accept</button>
+                        <input type="hidden" name="id" value="<%= complain._id %>">
             </div>
             <!-- <div class="buttons">
                 <button class="btn reject">Reject</button>
                 <button class="btn accept">Accept</button>
             </div> -->
             
-                <div class="buttons" style="display: flex; justify-content: space-between; margin-top: 10px;">
-                    <button class="btn reject" style="background: #ff4d4d; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer;">Reject</button>
-                    <form action="">
-                        <button class="btn accept" style="background: #10b981; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer;">Accept</button>
-                        <input type="hidden" name="id" value="<%= complain._id %>">
                     </form>                    
                 </div>
             </div>            
-            <% }) %>
+             <% }) %>  
             <div style="width: 100%; height:50px">
 
             </div>
@@ -249,6 +249,7 @@
                 <div>
                     <%- include('partials/footer') %>
                 </div>
+             
             </div>
 
 <script>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waste Management Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #map {
+            height: 80vh;
+            width: 95vw;
+            max-width: 400px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    
+
+<div id="map"><%- include('partials/header') %></div>
+
+<%- include('partials/footer') %>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script>
+    // Initialize the map and set the view to Bibvewadi, Pune
+    var map = L.map('map').setView([18.4724, 73.8664], 15);
+
+    // Add OpenStreetMap tile layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data © OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Function to add colored circle markers for zones
+    function addZoneMarker(lat, lng, color, description) {
+        L.circle([lat, lng], {
+            color: color,
+            fillColor: color,
+            fillOpacity: 0.6,
+            radius: 100
+        }).addTo(map).bindPopup(description);
+    }
+
+    // Example Zone Markers
+    addZoneMarker(18.4715, 73.8659, 'red', 'High Littering Zone');
+    addZoneMarker(18.4724, 73.8670, 'green', 'Moderate Littering Zone');
+    addZoneMarker(18.4730, 73.8645, 'blue', 'Low Littering Zone');
+</script>
+
+</body>
+</html>
