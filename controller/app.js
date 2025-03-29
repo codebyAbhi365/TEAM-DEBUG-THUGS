@@ -1,5 +1,5 @@
 const complaindata = require("../models/complain")
-async function createUser(req, res){
+async function filecomplain(req, res){
     const {Name,Location,Image}=req.body
     complaindata.create({
         Name,
@@ -12,10 +12,10 @@ async function createUser(req, res){
 }
 
 
-async function Mainpage(req, res) {
-    res.redirect("/home");
-}
+// async function Mainpage(req, res) {
+//     res.redirect("/home");
+// }
 
 module.exports = {
-    Mainpage, creatUser
+     filecomplain
 }
