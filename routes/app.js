@@ -6,7 +6,7 @@ appRouter.get("/" ,Mainpage);
 appRouter.post(`/complain`, filecomplain)
 
 appRouter.get('/complain',(req,res)=>{
-    res.render(`form`)
+    res.render(`form.ejs`)
 })
 
 
