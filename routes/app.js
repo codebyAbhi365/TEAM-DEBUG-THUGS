@@ -1,18 +1,8 @@
 const express = require('express')
-const router = express.Router()
+const appRouter = express.Router()
 
-const {createUser} = require("../controller/user")
+const {Mainpage} = require("../controller/app")
 
-router.get('/signup',(req,res) => {
-    res.render("signup")
-})
+appRouter.get("/" ,Mainpage);
 
-router.get('/login' , (req, res)=>{
-    res.render("login")
-})
-
-router.post(`/signup`,createUser)
-
-
-
-module.exports = router;
+module.exports = appRouter;
