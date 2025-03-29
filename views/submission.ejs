@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cleaning Task</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f4f8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 500px;
+            width: 95%;
+            height: 500px; /* Reduced height to fit external header & footer */
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .form-container input, .form-container button {
+            width: 100%;
+            padding: 10px 8px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        .form-container input::placeholder {
+            font-size: 12px;
+        }
+        .form-container input:focus, .form-container button:hover {
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+        }
+        .upload-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .upload-btn {
+            padding: 12px 16px;
+            background: #d9edf7;
+            color: #31708f;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .upload-section input[disabled] {
+            font-size: 9px;
+            width: 50%;
+        }
+        .upload-button {
+            background: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 8px;
+        }
+        .task-card {
+            background: #dfe6e9;
+            color: #333;
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .task-card .completed-btn {
+            background: #74b9ff;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        @media screen and (max-width: 768px) {
+            .container {
+                max-width: 90%;
+                padding: 15px;
+            }
+            .form-container input, .form-container button {
+                font-size: 14px;
+            }
+            .task-card {
+                padding: 12px;
+            }
+            .upload-btn, .completed-btn {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Include External Header -->
+    <%- include('partials/header') %>
+
+    <div class="container">
+        <div class="form-container">
+            <input type="text" placeholder="Name">
+            <input type="text" placeholder="Phone Number">
+            <div class="upload-section">
+                <input type="text" placeholder="Before Image" disabled>
+                <span class="upload-btn">Add File</span>
+            </div>
+            <div class="upload-section">
+                <input type="text" placeholder="After Image" disabled>
+                <span class="upload-btn">Add File</span>
+            </div>
+            <button class="upload-button">Upload</button>
+        </div>
+        <div class="task-card">
+            <p>&#8358;500 &nbsp; 4.5km</p>
+            <p>&#128205; 20 Kado street, Ikeja Lagos</p>
+            <p>&#128205; 20 Kado street, Ikeja Lagos</p>
+            <div class="completed-btn">Completed</div>
+        </div>
+    </div>
+
+    <!-- Include External Footer -->
+    <%- include('partials/footer') %>
+
+</body>
+</html>
