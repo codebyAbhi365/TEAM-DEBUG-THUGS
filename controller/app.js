@@ -30,11 +30,7 @@ async function showProfile(req, res){
 // }
 
 module.exports = {
-<<<<<<< HEAD
-   showProfile,filecomplain,
-=======
     showProfile,filecomplain,
->>>>>>> 63de62e76f63c83a80d29ff6e47209d1ac09364b
-} 
+}   
 //  Mainpage,
 // 
