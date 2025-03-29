@@ -1,6 +1,7 @@
 const { v4: uuidv4 } = require('uuid');
 const {setUser, getUser} = require("../service/auth")
 const Worker = require("../models/worker")
+const bcrypt = require("bcrypt");
 
 async function createUser(req, res){
     const {Name,Email,PhnNo,Pass}=req.body;
@@ -9,6 +10,8 @@ async function createUser(req, res){
     if (existingUser) {
         return res.render("signup", { error: "Email already registered" });
     }
+
+    const hashedPassword = await bcrypt.hash(Pass, 10);
 
     await Worker.create({
         Name,
@@ -37,6 +40,7 @@ async function loginUser(req, res){
     const sessionId = uuidv4();
     res.cookie("uid", sessionId);
     setUser(sessionId, user);
+    console.log(sessionId);
 
     return res.redirect("/home");
 }
