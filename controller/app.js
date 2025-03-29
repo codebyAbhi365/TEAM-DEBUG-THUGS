@@ -2,15 +2,15 @@ const complaindata = require("../models/complain")
 const User = require("../models/worker")
 const {getUser} = require("../service/auth");
 
-async function filecomplain(req, res){
-    const {Name,Location,Image}=req.body
+async function filecomplain (req, res){
+    const {Name,Location,Image}=await req.body
     complaindata.create({
         Name,
         Location,
         Image,
     
     })
-    console.log(Name);
+    // console.log(Name);
     res.redirect(`/homepage`)
 }
 
@@ -30,6 +30,7 @@ async function showProfile(req, res){
 // }
 
 module.exports = {
-    Mainpage,showProfile,filecomplain,
+   showProfile,filecomplain,
 } 
-
+//  Mainpage,
+// 

@@ -19,6 +19,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(express.static("public"));
+app.use("/uploads", express.static("public/uploads"));
 //  ,restrictToLoginUserOnly,
 //setting up veiw engine as ejs
 app.set("view engine" , "ejs");

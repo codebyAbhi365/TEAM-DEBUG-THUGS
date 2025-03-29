@@ -1,16 +1,16 @@
 const express = require('express')
 const appRouter = express.Router()
-const {filecomplain,showProfile} = require("../controller/app")
-
+const {showProfile} = require("../controller/app")
+// filecomplain,
 const complaindata=require(`../models/complain`)
 // Mainpage
 const maplocation=require(`../models/complain`)
-// const {filecomplain}=require("../controller/app")
+const {filecomplain}=require("../controller/app")
 
 const multer=require(`multer`)
 
 // appRouter.get("/" ,Mainpage);
-appRouter.post(`/complain`, filecomplain)
+// appRouter.post(`/complain`, filecomplain)
 
 appRouter.get('/complain',(req,res)=>{
     res.render(`form.ejs`)
@@ -32,7 +32,57 @@ appRouter.get('/workhome', async (req, res) => {
     res.render('workerhome',{complaints}); 
 });
 
-appRouter.post('/fillcomplain',filecomplain)
+
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      return cb(null, './uploads')
+    },
+    filename: function (req, file, cb) {
+    //   const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+      return cb(null, file.fieldname + '-' + file.originalname)
+    }
+  })
+  
+  const upload = multer({ storage: storage })
+
+// 
+// const upload = multer({ dest: 'uploads/' })
+appRouter.post('/fillcomplain',upload.single(`Image`),filecomplain,async (req,res)=>{
+    //  const {Name,Location,Image}=await req.body
+    //     complaindata.create({
+    //         Name,
+    //         Location,
+    //         Image,
+        
+    //     })
+    //     console.log(Name);
+    //     console.log(req.file);
+    // try {
+    //     if (!req.file) {
+    //         return res.status(400).send("No file uploaded.");
+    //     }
+
+    //     // Convert file path to forward slashes (important for Windows)
+    //     const filePath = req.file.path.replace(/\\/g, "/");
+
+    //     const newComplaint = await complaindata.create({
+    //         Name: req.body.name,
+    //         Location: req.body.location,
+    //         Image: filePath  // Save corrected path
+    //     });
+
+    //     await newComplaint.save();
+    //     res.redirect("/workerhome");
+    // } catch (err) {
+    //     console.error("Error:", err);
+    //     res.status(500).send("Error uploading file");
+    // }
+        res.redirect(`/homepage`)
+        // console.log(req.body);
+        
+        
+})
 
 // appRouter.get('/profile', (req, res)=>{
     //     res.render("profile.ejs");
@@ -49,7 +99,7 @@ appRouter.get("/profile", showProfile);
 //     res.render(`form`)
 //     })
 
-appRouter.post('fillcomplain',filecomplain)
+// appRouter.post('fillcomplain',filecomplain)
 
 appRouter.get("/", (req, res)=>{
     return res.render("homepage");
