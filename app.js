@@ -18,6 +18,8 @@ app.use(express.json());
 app.set("view engine" , "ejs");
 app.set("views" , path.resolve("views"));
 
+app.get(``)
+
 app.listen(PORT, ()=>{
     console.log(`Server Started on PORT ${PORT}`)
 });
