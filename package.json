@@ -1,0 +1,26 @@
+{
+  "name": "team-debug-thugs",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev":"nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codebyAbhi365/TEAM-DEBUG-THUGS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codebyAbhi365/TEAM-DEBUG-THUGS/issues"
+  },
+  "homepage": "https://github.com/codebyAbhi365/TEAM-DEBUG-THUGS#readme",
+  "description": "",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "mongoose": "^8.13.1",
+    "nodemon": "^3.1.9"
+  }
+}
