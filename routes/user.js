@@ -16,9 +16,9 @@ router.get('/login' , (req, res)=>{
 router.post(`/signup`,createUser)
 router.post("/login",loginUser )
 
-router.get('/complain',(req,res)=>{
-res.render(`form`)
-})
+// router.get('/complain',(req,res)=>{
+// res.render(`form`)
+// })
 
-router.post(`/filecomplain`, filecomplain)
+// router.post(`/filecomplain`, filecomplain)
 module.exports = router;

@@ -14,9 +14,9 @@ async function filecomplain(req, res){
     res.redirect(`/home`)
 }
 
-async function showProfile(req, res){
-    res.render("profile.ejs", {User});
-}
+// async function showProfile(req, res){
+//     res.render("profile.ejs", {User});
+// }
 
 // async function Mainpage(req, res) {
 //     res.redirect("/home");
