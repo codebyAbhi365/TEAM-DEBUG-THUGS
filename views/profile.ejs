@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .profile-container {
+            width: 90%;
+            max-width: 400px;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .profile-pic {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #10b981;
+        }
+
+        h2 {
+            margin: 10px 0 5px;
+            color: #222;
+        }
+
+        p {
+            color: #555;
+            font-size: 14px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 18px;
+            font-weight: bold;
+            color: #10b981;
+        }
+
+        .achievements {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .achievements h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #10b981;
+        }
+
+        .achievement-item {
+            background: #f8f9fa;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+        }
+
+        .achievement-icon {
+            font-size: 18px;
+            margin-right: 10px;
+        }
+
+        .badges {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            background: gold;
+            padding: 5px 15px;
+            margin: 5px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 480px) {
+            .profile-container {
+                width: 100%;
+                padding: 15px;
+            }
+
+            .stats {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .stat-item {
+                margin-bottom: 10px;
+            }
+
+            .stat-number {
+                font-size: 16px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 12px;
+            }
+
+            .achievement-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .badge {
+                font-size: 12px;
+                padding: 4px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile-container">
+        <img src="profile.png" alt="Profile Picture" class="profile-pic">
+        <h2>Sameer Kumar</h2>
+        <p>📧 sameer.kumar@gmail.com</p>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number">15km</div>
+                <div>Total Areas Cleaned</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">7🔥</div>
+                <div>Day Streak</div>
+            </div>
+        </div>
+
+        <div class="achievements">
+            <h3> Achievements</h3>
+            <div class="achievement-item">
+                <span class="achievement-icon">📜</span> Cleaned 5 Areas - Earned Certificate
+            </div>
+            <div class="achievement-item">
+                <span class="achievement-icon">🎫</span> Cleaned 10 Areas - Won Free PMPL Pass
+            </div>
+            <div class="achievement-item">
+                <span class="achievement-icon">🚆</span> Cleaned 10 Areas - Won Free Metro Pass
+            </div>
+        </div>
+
+        <div class="badges">
+            <h3>🎖 Badges Earned</h3>
+            <span class="badge">Eco Warrior 🌿</span>
+            <span class="badge">Community Hero 🏅</span>
+        </div>
+    </div>
+
+</body>
+</html>
