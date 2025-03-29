@@ -1,6 +1,6 @@
 const express = require('express')
 const appRouter = express.Router()
-const {Mainpage,filecomplain} = require("../controller/app")
+const {Mainpage,filecomplain,showProfile} = require("../controller/app")
 
 const complaindata=require(`../models/complain`)
 
@@ -19,6 +19,11 @@ appRouter.get('/workhome', async (req, res) => {
 // { complaints })
     res.render('workerhome',{complaints}); 
 });
+
+// appRouter.get('/profile', (req, res)=>{
+//     res.render("profile.ejs");
+// })
+appRouter.get("/profile", showProfile); 
 
 // const {filecomplain}=require("../controller/app")
 
