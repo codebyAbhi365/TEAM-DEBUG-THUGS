@@ -1,5 +1,7 @@
 const complaindata = require("../models/complain")
-async function createUser(req, res){
+const User = require("../models/worker")
+
+async function file(req, res){
     const {Name,Location,Image}=req.body
     complaindata.create({
         Name,
@@ -11,6 +13,9 @@ async function createUser(req, res){
     res.redirect(`/home`)
 }
 
+async function showProfile(req, res){
+    res.render("profile.ejs", {User});
+}
 
 async function Mainpage(req, res) {
     res.redirect("/home");

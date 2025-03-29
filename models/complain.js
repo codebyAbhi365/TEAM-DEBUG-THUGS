@@ -13,7 +13,7 @@ const cschema=mongoose.Schema({
     },
     Image:{
         required:true,
-        type:string
+        type:String
     }
 
 })
