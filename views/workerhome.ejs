@@ -226,7 +226,7 @@
                 </div>
                 <div class="buttons" style="display: flex; justify-content: space-between; margin-top: 10px;">
                     <button class="btn reject" style="background: #ff4d4d; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer;">Reject</button>
-                    <form action="">
+                    <form action="/home/submission" method="POST">
                         <button class="btn accept" style="background: #10b981; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer;">Accept</button>
                         <input type="hidden" name="id" value="<%= complain._id %>">
                     </form>                    

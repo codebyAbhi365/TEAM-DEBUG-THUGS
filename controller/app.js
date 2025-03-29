@@ -1,36 +1,37 @@
-const complaindata = require("../models/complain")
-const User = require("../models/worker")
-const {getUser} = require("../service/auth");
+const complaindata = require("../models/complain");
+const User = require("../models/worker");
+const { getUser } = require("../service/auth");
+const Accepted = require("../models/Accepted"); // Import the Accepted model
 
-async function filecomplain (req, res){
-    const {Name,Location,Image}=await req.body
-    complaindata.create({
-        Name,
-        Location,
-        Image,
-    
-    })
-    // console.log(Name);
-    res.redirect(`/homepage`)
+async function filecomplain(req, res) {
+    try {
+        const { Name, Location, Image } = req.body; // Fixed destructuring
+        await complaindata.create({ Name, Location, Image });
+        res.redirect(`/homepage`);
+    } catch (error) {
+        console.error("Error filing complaint:", error);
+        res.status(500).send("Internal Server Error");
+    }
 }
 
-async function showProfile(req, res){ 
-    const userUid = req.cookies?.uid;
-    if(!userUid) return res.redirect("/login");
+// Function to show user profile
+async function showProfile(req, res) {
+    try {
+        const userUid = req.cookies?.uid;
+        if (!userUid) return res.redirect("/login");
 
-    const user = getUser(userUid);
-    if(!user) return res.redirect("/login");
-    req.user = user;
-    return res.render("profile" , {user});
+        const user = getUser(userUid);
+        if (!user) return res.redirect("/login");
 
+        req.user = user;
+        res.render("profile", { user });
+    } catch (error) {
+        console.error("Error loading profile:", error);
+        res.status(500).send("Internal Server Error");
+    }
 }
-
-// async function Mainpage(req, res) {
-//     res.render("home.ejs");
-// }
 
 module.exports = {
-    showProfile,filecomplain,
-}   
-//  Mainpage,
-// 
+    showProfile,
+    filecomplain,
+};
