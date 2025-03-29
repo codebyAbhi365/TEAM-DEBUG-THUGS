@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #2E8B57, #1E6B47);
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        .container {
+            width: 350px;
+            padding: 20px;
+            background: white;
+            border-radius: 30px 10px 50px 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            position: relative;
+            animation: floatEffect 3s infinite alternate ease-in-out;
+        }
+        @keyframes floatEffect {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
+        }
+        img {
+            width: 60px;
+            margin-bottom: 10px;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards 0.5s;
+        }
+        h2 {
+            color: #2E8B57;
+            font-size: 22px;
+            margin-bottom: 10px;
+            opacity: 0;
+            animation: slideDown 0.8s ease-in-out forwards 0.7s;
+        }
+        .input-container {
+            position: relative;
+            width: 90%;
+            margin: 10px auto;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            transition: all 0.3s;
+            outline: none;
+        }
+        input:focus {
+            border-color: #2E8B57;
+            transform: scale(1.05);
+        }
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #666;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #2E8B57;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease-in-out;
+        }
+        button:hover {
+            background: #1E6B47;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        }
+        p {
+            margin-top: 10px;
+            color: #2E8B57;
+            cursor: pointer;
+            font-weight: bold;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards 1s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Recycling_symbol.svg/512px-Recycling_symbol.svg.png" alt="Logo">
+        <h2>Login</h2>
+        <div class="input-container">
+            <input type="email" placeholder="Email">
+        </div>
+        <div class="input-container">
+            <input type="password" id="password" placeholder="Password">
+            <span class="toggle-password" onclick="togglePassword()">👁️</span>
+        </div>
+        <button>Login</button>
+        <p>Don't have an account? Sign Up</p>
+    </div>
+    <script>
+        function togglePassword() {
+            var passwordField = document.getElementById("password");
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+            } else {
+                passwordField.type = "password";
+            }
+        }
+    </script>
+</body>
+</html>
