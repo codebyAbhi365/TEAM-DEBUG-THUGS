@@ -1,7 +1,9 @@
 const { v4: uuidv4 } = require('uuid');
-const {setUser, getUser} = require("../service/auth")
 const Worker = require("../models/worker")
 const bcrypt = require("bcrypt");
+const { setUser, getUser, sessionIdToUserMap } = require("../service/auth");
+
+
 
 async function createUser(req, res){
     const {Name,Email,PhnNo,Pass}=req.body;
@@ -43,6 +45,9 @@ async function loginUser(req, res){
     res.cookie("id", userId.toString())
     console.log(userId.toString())
     setUser(sessionId, user);
+    console.log("Setting User in Map:", sessionId, user);
+    console.log("Session Map After setUser:", sessionIdToUserMap);
+
 
     return res.redirect("/home");
 }
