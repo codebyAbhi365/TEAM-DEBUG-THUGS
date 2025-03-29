@@ -23,7 +23,7 @@ app.use(express.static("public"));
 app.set("view engine" , "ejs");
 app.set("views" , path.resolve("views"));
 
-app.use("/home" ,restrictToLoginUserOnly, appRouter);
+app.use("/home", appRouter);
 app.use("/" , router);
 
 app.get(`/homepage`,(req,res)=>{

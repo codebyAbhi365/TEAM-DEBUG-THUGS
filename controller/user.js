@@ -36,11 +36,13 @@ async function loginUser(req, res){
     if (!isMatch) {
         return res.render("login", { error: "Invalid Email or Password" });
     }
+    const userId = user._id;
 
     const sessionId = uuidv4();
     res.cookie("uid", sessionId);
+    res.cookie("id", userId.toString())
+    console.log(userId.toString())
     setUser(sessionId, user);
-    console.log(sessionId);
 
     return res.redirect("/home");
 }

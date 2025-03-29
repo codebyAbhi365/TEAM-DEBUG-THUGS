@@ -1,5 +1,6 @@
 const complaindata = require("../models/complain")
 const User = require("../models/worker")
+const {getUser} = require("../service/auth");
 
 async function filecomplain(req, res){
     const {Name,Location,Image}=req.body
@@ -13,9 +14,15 @@ async function filecomplain(req, res){
     res.redirect(`/home`)
 }
 
-async function showProfile(req, res){
-    
-    res.render("profile.ejs", {User});
+async function showProfile(req, res){ 
+    const userUid = req.cookies?.uid;
+    if(!userUid) return res.redirect("/login");
+
+    const user = getUser(userUid);
+    if(!user) return res.redirect("/login");
+    req.user = user;
+    return res.render("profile" , {user});
+
 }
 
 async function Mainpage(req, res) {
@@ -23,5 +30,5 @@ async function Mainpage(req, res) {
 }
 
 module.exports = {
-     filecomplain,Mainpage
+     filecomplain,Mainpage,showProfile,
 }
