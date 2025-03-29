@@ -18,12 +18,12 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(express.static("public"));
-
+//  ,restrictToLoginUserOnly,
 //setting up veiw engine as ejs
 app.set("view engine" , "ejs");
 app.set("views" , path.resolve("views"));
 
-app.use("/home" ,restrictToLoginUserOnly, appRouter);
+app.use("/home" ,appRouter);
 app.use("/" , router);
 
 app.get(`/homepage`,(req,res)=>{

@@ -54,7 +54,7 @@
             border-radius: 5px;
         }
          .card {
-            background: black;
+            /* background: black; */
             color: white;
             padding: 15px;
             border-radius: 10px;
@@ -138,7 +138,7 @@
             width: 500px;
             padding: 15px;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
         }
 
         .top-section {
@@ -217,21 +217,26 @@
         <h3>Available Places For Cleaning</h3>
 
 <div class="cardsection">
-        <div class="card">
+    
+    
+    <div class="card">
+        <% complaints.forEach(complain => { %>
             <div class="top-section">
                 <div>
-                    <div class="price-distance">Rs. 500 | 4.5km</div>
-                    <div class="location">MG Road, Pune, Maharashtra</div>
+                    <div  style="color: black;" class="price-distance">Rs. 500 | 4.5km</div>
+                    <div class="location"><%= complain.Location %></div>
                 </div>
-                <div class="image-placeholder"><img width="140px" height="120px" src="/images/R.jpg" alt="" srcset=""></div>
+                <div class="image-placeholder"><img width="140px" height="120px" src="<%= complain.Image %>" alt="" srcset=""></div>
             </div>
             <div class="buttons">
                 <button class="btn reject">Reject</button>
                 <button class="btn accept">Accept</button>
             </div>
+            
+            <% }) %>
         </div>
     
-        <div class="card">
+        <!-- <div class="card">
             <div class="top-section">
                 <div>
                     <div class="price-distance">Rs. 700 | 3.2km</div>
@@ -257,7 +262,7 @@
                 <button class="btn reject">Reject</button>
                 <button class="btn accept">Accept</button>
             </div>
-        </div>
+        </div> -->
 
 </div>
         <nav class="bottom-nav">
