@@ -212,16 +212,19 @@
 
 <div class="cardsection">
     
-    
-    <div class="card">
         <% complaints.forEach(complain => { %>
-            <div class="top-section">
-                <div>
-                    <div  style="color: black;" class="price-distance">Rs. 500 | 4.5km</div>
-                    <div class="location"  style="color: black;"  id="locationvalue"><%= complain.Location %></div>
-                    <a id="mapLink" href="#" target="_blank">Open Location in Google Maps</a>
-
+            <div class="card" style="border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); padding: 15px; margin: 10px 0; background: white;">
+                <div class="top-section" style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <div style="color: black; font-weight: bold;" class="price-distance">Rs. 500 | 4.5km</div>
+                        <div class="location" style="color: black;" id="locationvalue"><%= complain.Location %></div>
+                        <a id="mapLink" href="#" target="_blank" style="color: #007bff; text-decoration: none; font-size: 14px;">Open Location in Google Maps</a>
+                    </div>
+                    <div class="image-placeholder">
+                        <img width="140px" height="120px" src="<%= complain.Image %>" alt="" style="border-radius: 8px; object-fit: cover;">
+                    </div>
                 </div>
+<<<<<<< HEAD
                 <div class="image-placeholder">
                 <img width="140px" height="120px" src="/uploads/<%= complain.Image %>" alt=""></div>
 
@@ -231,8 +234,17 @@
                 <button class="btn accept">Accept</button>
             </div>
             
+=======
+                <div class="buttons" style="display: flex; justify-content: space-between; margin-top: 10px;">
+                    <button class="btn reject" style="background: #ff4d4d; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer;">Reject</button>
+                    <button class="btn accept" style="background: #10b981; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer;">Accept</button>
+                </div>
+            </div>            
+>>>>>>> 63de62e76f63c83a80d29ff6e47209d1ac09364b
             <% }) %>
-        </div>
+            <div style="width: 100%; height:50px">
+
+            </div>
     
         <!-- <div class="card">
             <div class="top-section">
@@ -282,7 +294,7 @@
             </div>
         </nav>
     </div>
-
+-->
 <script>
 
    const locvalue=document.getElementById(`locationvalue`).innerText
@@ -309,7 +321,7 @@ document.getElementById("mapLink").href = googleMapsUrl;
 
 </script>
 
-    </div> -->
+    </div>
     <%- include('partials/footer') %>
 </body>
 </html>

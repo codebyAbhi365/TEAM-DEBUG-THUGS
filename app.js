@@ -29,7 +29,6 @@ app.set("views" , path.resolve("views"));
 app.use(async (req, res, next) => {
     try {
         const uid = req.cookies?.id;
-        console.log(uid);
         if (uid) {
             const user = await User.findById(uid) // Find user by UID
             res.locals.user = user || null; // Store user in res.locals
