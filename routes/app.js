@@ -1,18 +1,24 @@
 const express = require('express')
 const appRouter = express.Router()
-
-const {Mainpage} = require("../controller/app")
+const {Mainpage,filecomplain} = require("../controller/app")
 
 appRouter.get("/" ,Mainpage);
+appRouter.post(`/complain`, filecomplain)
 
-const {filecomplain}=require("../controller/app")
-
-
-router.get('/complain',(req,res)=>{
+appRouter.get('/complain',(req,res)=>{
     res.render(`form`)
-    })
+})
 
-    router.post('fillcomplain',filecomplain)
+
+
+// const {filecomplain}=require("../controller/app")
+
+
+// router.get('/complain',(req,res)=>{
+//     res.render(`form`)
+//     })
+
+appRouter.post('fillcomplain',filecomplain)
     
 
 module.exports = appRouter;

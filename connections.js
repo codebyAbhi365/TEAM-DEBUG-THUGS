@@ -8,3 +8,5 @@ function ConnectTOMongoDB(){
 }
 
 module.exports = ConnectTOMongoDB;
+
+// mongodb://localhost:27017/data

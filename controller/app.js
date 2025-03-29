@@ -18,10 +18,10 @@ async function filecomplain(req, res){
 //     res.render("profile.ejs", {User});
 // }
 
-// async function Mainpage(req, res) {
-//     res.redirect("/home");
-// }
+async function Mainpage(req, res) {
+    res.render("home.ejs");
+}
 
 module.exports = {
-     filecomplain
+     filecomplain,Mainpage
 }

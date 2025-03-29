@@ -102,15 +102,15 @@
     <div class="form-container">
         
         <h2>Report Garbage Area</h2>
-        <form>
+        <form action="/home/complain" method="post">
             <label for="name">Your Name</label>
-            <input type="text" id="name" placeholder="Enter your name" required>
+            <input type="text" id="name" name="Name" placeholder="Enter your name" required>
 
             <label for="location">Location</label>
-            <input type="text" id="location" placeholder="Enter location" required>
+            <input type="text" id="location" name="Location" placeholder="Enter location" required>
 
             <label for="photo">Upload Photo</label>
-            <input type="file" id="photo" class="file-input" accept="image/*">
+            <input type="file" id="photo" name="Image" class="file-input" >
 
             <button type="button" class="live-location-btn" onclick="getLocation()">Use Live Location</button>
 
