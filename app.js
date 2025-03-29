@@ -2,9 +2,13 @@ const express = require("express");
 const app = express();
 const PORT = 5000;
 
+const {router}=require(`./routes/app`)
+
 //Connecting MongoDb
 const ConnectTOMongoDB = require("./connections");
 ConnectTOMongoDB();
+
+app.use(`/`,router)
 
 //middlewares
 app.use(express.urlencoded({extended:false}));
