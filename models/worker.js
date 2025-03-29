@@ -23,4 +23,4 @@ const schema=mongoose.Schema({
     }
 })
 
-const workermodel=mongoose.model(`Worker`,schema)
+const workermodel = mongoose.model(`Worker`,schema)
