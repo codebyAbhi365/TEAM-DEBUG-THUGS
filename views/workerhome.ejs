@@ -224,6 +224,15 @@
                         <img width="140px" height="120px" src="<%= complain.Image %>" alt="" style="border-radius: 8px; object-fit: cover;">
                     </div>
                 </div>
+                <div class="image-placeholder">
+                <img width="140px" height="120px" src="/uploads/<%= complain.Image %>" alt=""></div>
+
+            </div>
+            <!-- <div class="buttons">
+                <button class="btn reject">Reject</button>
+                <button class="btn accept">Accept</button>
+            </div> -->
+            
                 <div class="buttons" style="display: flex; justify-content: space-between; margin-top: 10px;">
                     <button class="btn reject" style="background: #ff4d4d; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer;">Reject</button>
                     <form action="/home/submission" method="POST">

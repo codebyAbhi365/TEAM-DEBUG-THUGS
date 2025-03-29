@@ -3,6 +3,7 @@ const User = require("../models/worker");
 const { getUser } = require("../service/auth");
 const Accepted = require("../models/Accepted"); // Import the Accepted model
 
+<<<<<<< HEAD
 async function filecomplain(req, res) {
     try {
         const { Name, Location, Image } = req.body; // Fixed destructuring
@@ -13,6 +14,19 @@ async function filecomplain(req, res) {
         res.status(500).send("Internal Server Error");
     }
 }
+=======
+// async function filecomplain (req, res){
+//     const {Name,Location,Image}=await req.body
+//     await complaindata.create({
+//         Name:Name,
+//         Location:Location,
+//         Image:Image,
+    
+//     })
+//     console.log(Name);
+//     res.redirect(`/homepage`)
+// }
+>>>>>>> a52740825fe61ba36167396ee22181076850724f
 
 // Function to show user profile
 async function showProfile(req, res) {
@@ -32,6 +46,16 @@ async function showProfile(req, res) {
 }
 
 module.exports = {
+<<<<<<< HEAD
     showProfile,
     filecomplain,
 };
+=======
+   showProfile
+   
+} 
+    // showProfile,filecomplain,
+ 
+//  Mainpage,
+// ,filecomplain,
+>>>>>>> a52740825fe61ba36167396ee22181076850724f
