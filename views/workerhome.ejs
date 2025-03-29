@@ -109,7 +109,7 @@
         }
         @media screen and (min-width: 768px) {
             .container {
-                max-width: 600px;
+                max-width: 650px;
             }
             .bottom-nav {
                 width: 600px;
@@ -203,13 +203,7 @@
 </head>
 <body>
     <div class="container">
-        <header>
-            <h2>Hii Rajesh</h2>
-            <div class="notification">
-                <span class="bell"><img  width="50px" height="50px" src="/images/love-bell.png" alt="" srcset=""></span>
-                <span class="badge">1</span>
-            </div>
-        </header>
+        <%- include('partials/header') %>
         <div class="search-bar">
             <input type="text" placeholder="Search Area for Cleaning">
             <button>+</button>
@@ -265,7 +259,7 @@
                 <button class="btn accept">Accept</button>
             </div>
         </div> -->
-
+<!-- 
 </div>
         <nav class="bottom-nav">
             <div class="nav-item">
@@ -313,5 +307,7 @@ document.getElementById("mapLink").href = googleMapsUrl;
 
 </script>
 
+    </div> -->
+    <%- include('partials/footer') %>
 </body>
 </html>

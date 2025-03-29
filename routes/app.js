@@ -1,15 +1,16 @@
 const express = require('express')
 const appRouter = express.Router()
-const {Mainpage,filecomplain,showProfile} = require("../controller/app")
+const {filecomplain,showProfile} = require("../controller/app")
 
 const complaindata=require(`../models/complain`)
-
+// Mainpage
 const maplocation=require(`../models/complain`)
 // const {filecomplain}=require("../controller/app")
 
 const multer=require(`multer`)
 
-appRouter.get("/" ,Mainpage);
+// appRouter.get("/" ,Mainpage);
+appRouter.post(`/complain`, filecomplain)
 
 appRouter.get('/complain',(req,res)=>{
     res.render(`form.ejs`)
@@ -18,8 +19,9 @@ appRouter.get('/complain',(req,res)=>{
 
 
 appRouter.get('/workhome', async (req, res) => {
-    
     const complaints = await complaindata.find();
+    
+    // const complaints = await complaindata.find();
     // console.log(complaints);
 
     // const location=await maplocation.find(Location);
@@ -35,7 +37,23 @@ appRouter.post('/fillcomplain',filecomplain)
 // appRouter.get('/profile', (req, res)=>{
     //     res.render("profile.ejs");
     // })
-    appRouter.get("/profile", showProfile); 
+    // appRouter.get("/profile", showProfile); 
+//     res.render("profile.ejs");
+// })
+appRouter.get("/profile", showProfile); 
+
+// const {filecomplain}=require("../controller/app")
+
+
+// router.get('/complain',(req,res)=>{
+//     res.render(`form`)
+//     })
+
+appRouter.post('fillcomplain',filecomplain)
+
+appRouter.get("/", (req, res)=>{
+    return res.render("homepage");
+})
     
     
     

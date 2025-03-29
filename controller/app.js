@@ -25,9 +25,9 @@ async function showProfile(req, res){
 
 }
 
-async function Mainpage(req, res) {
-    res.render("home.ejs");
-}
+// async function Mainpage(req, res) {
+//     res.render("home.ejs");
+// }
 
 module.exports = {
     Mainpage,showProfile,filecomplain,
