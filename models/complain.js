@@ -5,15 +5,15 @@ const mongoose=require(`mongoose`)
 const cschema=mongoose.Schema({
    Name:{
     type:String,
-    required:true
+    required:false
    },
    Location:{
     type:String,
-    required:true
+    required:false
    },
    Image:{
     type:String,
-    required:true
+    required:false
    }
 
 })

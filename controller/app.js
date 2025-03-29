@@ -2,17 +2,17 @@ const complaindata = require("../models/complain")
 const User = require("../models/worker")
 const {getUser} = require("../service/auth");
 
-async function filecomplain (req, res){
-    const {Name,Location,Image}=await req.body
-    complaindata.create({
-        Name,
-        Location,
-        Image,
+// async function filecomplain (req, res){
+//     const {Name,Location,Image}=await req.body
+//     await complaindata.create({
+//         Name:Name,
+//         Location:Location,
+//         Image:Image,
     
-    })
-    // console.log(Name);
-    res.redirect(`/homepage`)
-}
+//     })
+//     console.log(Name);
+//     res.redirect(`/homepage`)
+// }
 
 async function showProfile(req, res){ 
     const userUid = req.cookies?.uid;
@@ -30,11 +30,8 @@ async function showProfile(req, res){
 // }
 
 module.exports = {
-<<<<<<< HEAD
-   showProfile,filecomplain,
-=======
-    showProfile,filecomplain,
->>>>>>> 63de62e76f63c83a80d29ff6e47209d1ac09364b
+   showProfile
+   
 } 
 //  Mainpage,
-// 
+// ,filecomplain,

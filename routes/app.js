@@ -3,9 +3,10 @@ const appRouter = express.Router()
 const {showProfile} = require("../controller/app")
 // filecomplain,
 const complaindata=require(`../models/complain`)
+const path=require(`path`)
 // Mainpage
 const maplocation=require(`../models/complain`)
-const {filecomplain}=require("../controller/app")
+// const {filecomplain}=require("../controller/app")
 
 const multer=require(`multer`)
 
@@ -34,21 +35,80 @@ appRouter.get('/workhome', async (req, res) => {
 
 
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      return cb(null, './uploads')
-    },
-    filename: function (req, file, cb) {
-    //   const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-      return cb(null, file.fieldname + '-' + file.originalname)
-    }
-  })
-  
-  const upload = multer({ storage: storage })
 
-// 
+// appRouter.post("/fillcomplain",filecomplain)
+
+
+
+
+
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, "public/uploads"); // Make sure this directory exists
+//     },
+//     filename: function (req, file, cb) {
+//         cb(null, Date.now() + path.extname(file.originalname)); // Unique filename
+//     }
+// });
+// const upload = multer({ storage: storage });
+
+// // POST Route to Save Data
+// appRouter.post("/fillcomplain", upload.single("Image"), async (req, res) => {
+//     try {
+//         if (!req.file) {
+//             return res.status(400).send("No image uploaded");
+//         }
+
+//         const newComplain = new ComplainModel({
+//             Name: req.body.Name,
+//             Location: req.body.Location,
+//             Image: "/uploads/" + req.file.filename, // Save image path
+//         });
+
+//         await newComplain.save(); // Save data to MongoDB
+//         res.redirect("/workerhome"); // Redirect after saving
+//     } catch (err) {
+//         console.error("Error saving complaint:", err);
+//         res.status(500).send("Error processing complaint");
+//     }
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//       return cb(null, './uploads')
+//     },
+//     filename: function (req, file, cb) {
+//     //   const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+//       return cb(null, file.fieldname + '-' + file.originalname)
+//     }
+//   })
+  
+//   const upload = multer({ storage: storage })
+
+//   appRouter.post('/fillcomplain',filecomplain)
+
+
+// upload.single(`Image`)
 // const upload = multer({ dest: 'uploads/' })
-appRouter.post('/fillcomplain',upload.single(`Image`),filecomplain,async (req,res)=>{
+// appRouter.post('/fillcomplain',filecomplain,async (req,res)=>{
     //  const {Name,Location,Image}=await req.body
     //     complaindata.create({
     //         Name,
@@ -78,11 +138,11 @@ appRouter.post('/fillcomplain',upload.single(`Image`),filecomplain,async (req,re
     //     console.error("Error:", err);
     //     res.status(500).send("Error uploading file");
     // }
-        res.redirect(`/homepage`)
+        // res.redirect(`/homepage`)
         // console.log(req.body);
         
         
-})
+// })
 
 // appRouter.get('/profile', (req, res)=>{
     //     res.render("profile.ejs");
