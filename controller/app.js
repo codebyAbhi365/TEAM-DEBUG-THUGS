@@ -1,5 +1,4 @@
 const complaindata = require("../models/complain")
-// async function filecomplain(req, res){
 const User = require("../models/worker")
 
 async function filecomplain(req, res){
@@ -14,9 +13,6 @@ async function filecomplain(req, res){
     res.redirect(`/home`)
 }
 
-// async function showProfile(req, res){
-//     res.render("profile.ejs", {User});
-// }
 async function showProfile(req, res){
     
     res.render("profile.ejs", {User});
