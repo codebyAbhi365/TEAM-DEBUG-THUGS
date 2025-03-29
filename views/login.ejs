@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Auth Pages</title>
     <style>
         body {
             display: flex;
@@ -22,15 +22,10 @@
             border-radius: 40px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
             text-align: center;
-            position: relative;
-            animation: floatEffect 3s infinite alternate ease-in-out;
+            position: absolute;
             display: flex;
             flex-direction: column;
             justify-content: center;
-        }
-        @keyframes floatEffect {
-            from { transform: translateY(0); }
-            to { transform: translateY(-10px); }
         }
         h2 {
             color: #556B2F;
@@ -47,18 +42,15 @@
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 20px;
-            transition: all 0.3s;
             outline: none;
         }
         input:focus {
             border-color: #556B2F;
-            transform: scale(1.05);
         }
         .toggle-password {
             position: absolute;
             right: 10px;
             top: 50%;
-            transform: translateY(-50%);
             cursor: pointer;
             color: #666;
         }
@@ -71,7 +63,6 @@
             border-radius: 20px;
             cursor: pointer;
             font-weight: bold;
-            transition: all 0.3s ease-in-out;
         }
         button:hover {
             background: #6B8E23;
@@ -87,27 +78,29 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="loginPage">
         <h2>Login</h2>
         <div class="input-container">
-            <input type="email" placeholder="Email">
+            <input type="email" placeholder="Email" >
         </div>
         <div class="input-container">
             <input type="password" id="password" placeholder="Password">
-            <span class="toggle-password" onclick="togglePassword()">👁️</span>
+            <span class="toggle-password"></span>
         </div>
         <button>Login</button>
-        <p>Don't have an account? Sign Up</p>
+        <a href="/signup">Don't have an account? Sign Up</a>
     </div>
+    
     <script>
-        function togglePassword() {
-            var passwordField = document.getElementById("password");
+        function togglePassword(id = "password") {
+            var passwordField = document.getElementById(id);
             if (passwordField.type === "password") {
                 passwordField.type = "text";
             } else {
                 passwordField.type = "password";
             }
         }
+        
     </script>
 </body>
 </html>

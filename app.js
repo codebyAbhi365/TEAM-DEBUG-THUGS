@@ -9,8 +9,6 @@ const router=require(`./routes/app`)
 const ConnectTOMongoDB = require("./connections");
 ConnectTOMongoDB();
 
-app.use('/',router)
-
 //middlewares
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
@@ -19,9 +17,7 @@ app.use(express.json());
 app.set("view engine" , "ejs");
 app.set("views" , path.resolve("views"));
 
-app.get(`/login`,(req,res)=>{
-    res.render(`signup`)
-})
+app.use("/" , router);
 
 app.listen(PORT, ()=>{
     console.log(`Server Started on PORT ${PORT}`)
