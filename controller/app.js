@@ -11,7 +11,7 @@ async function filecomplain(req, res){
     
     })
     console.log(Name);
-    res.redirect(`/home`)
+    res.redirect(`/homepage`)
 }
 
 async function showProfile(req, res){ 
@@ -30,5 +30,6 @@ async function Mainpage(req, res) {
 }
 
 module.exports = {
-     filecomplain,Mainpage,showProfile,
-}
+    Mainpage,showProfile,filecomplain,
+} 
+

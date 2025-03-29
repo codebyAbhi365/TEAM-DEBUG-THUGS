@@ -224,7 +224,9 @@
             <div class="top-section">
                 <div>
                     <div  style="color: black;" class="price-distance">Rs. 500 | 4.5km</div>
-                    <div class="location"><%= complain.Location %></div>
+                    <div class="location"  style="color: black;"  id="locationvalue"><%= complain.Location %></div>
+                    <a id="mapLink" href="#" target="_blank">Open Location in Google Maps</a>
+
                 </div>
                 <div class="image-placeholder"><img width="140px" height="120px" src="<%= complain.Image %>" alt="" srcset=""></div>
             </div>
@@ -284,5 +286,32 @@
             </div>
         </nav>
     </div>
+
+<script>
+
+   const locvalue=document.getElementById(`locationvalue`).innerText
+
+console.log(locvalue);
+
+    const locationString = locvalue;
+
+// Step 1: Remove labels and split the string
+const [latPart, lonPart] = locationString.replace("Lat: ", "").replace("Lon: ", "").split(", ");
+
+// Step 2: Convert to float
+const latitude = parseFloat(latPart);
+const longitude = parseFloat(lonPart);
+
+console.log("Latitude:", latitude);  // Output: 18.464388
+console.log("Longitude:", longitude);  // Output: 73.867729
+
+const googleMapsUrl = `https://www.google.com/maps?q=${latitude},${longitude}`;
+
+// locvalue.innerText=`${googleMapsUrl}`
+
+document.getElementById("mapLink").href = googleMapsUrl;
+
+</script>
+
 </body>
 </html>

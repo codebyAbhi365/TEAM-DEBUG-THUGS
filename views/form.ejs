@@ -17,29 +17,37 @@
 
         .form-container {
             background: white;
-            padding: 20px;
+            padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 350px;
+            width: 90vh;
+            max-width: 400px;
+            height: 600px;
+            background-image: url("/images/new\ img\ 02.png");
+            background-size: cover;
+            background-position: center;
         }
 
         h2 {
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px; /* Added spacing between form elements */
         }
 
         label {
-            font-size: 14px;
+            font-size: 15px;
             font-weight: bold;
             display: block;
-            margin-top: 10px;
+            margin-bottom: 8px;
         }
 
         input, textarea {
             width: 100%;
-            padding: 8px;
-            margin-top: 5px;
+            padding: 12px;
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 14px;
@@ -47,19 +55,38 @@
 
         .file-input {
             border: none;
+            cursor: pointer;
+        }
+
+        .location-container {
+            display: flex;
+            align-items: center;
+            gap: 12px; /* Increased spacing between input and button */
+        }
+
+        .location-container input {
+            flex: 1;
         }
 
         .live-location-btn {
-            display: block;
-            width: 100%;
             background: #007bff;
             color: white;
             border: none;
-            padding: 8px;
+            padding: 12px;
             border-radius: 5px;
             cursor: pointer;
+            font-size: 14px;
+            white-space: nowrap;
+            transition: background 0.3s ease;
+        }
+
+        .live-location-btn:hover {
+            background: #0056b3;
+        }
+
+        .submit-container {
             text-align: center;
-            margin-top: 10px;
+            margin-top: 20px; /* Increased spacing before submit button */
         }
 
         .submit-btn {
@@ -67,18 +94,23 @@
             background: green;
             color: white;
             border: none;
-            padding: 10px;
+            padding: 14px;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
-            margin-top: 15px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: darkgreen;
         }
 
         @media (max-width: 480px) {
             .form-container {
-                padding: 15px;
-                width: 100%;
-                max-width: 300px;
+                padding: 20px;
+                width: 90%;
+                max-width: 320px;
             }
 
             h2 {
@@ -87,12 +119,12 @@
 
             input, textarea {
                 font-size: 12px;
-                padding: 6px;
+                padding: 8px;
             }
 
             .live-location-btn, .submit-btn {
                 font-size: 14px;
-                padding: 8px;
+                padding: 10px;
             }
         }
     </style>
@@ -100,21 +132,31 @@
 <body>
 
     <div class="form-container">
-        
         <h2>Report Garbage Area</h2>
-        <form action="/home/complain" method="post">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" name="Name" placeholder="Enter your name" required>
+        <form action="/home/fillcomplain" method="post">
+            
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="Name" placeholder="Enter your name" required>
+            </div>
 
-            <label for="location">Location</label>
-            <input type="text" id="location" name="Location" placeholder="Enter location" required>
+            <div class="form-group">
+                <label for="location">Location</label>
+                <div class="location-container">
+                    <input type="text" id="location" name="Location" placeholder="Enter location" required>
+                    <button type="button" class="live-location-btn" onclick="getLocation()">Live Location</button>
+                </div>
+            </div>
 
-            <label for="photo">Upload Photo</label>
-            <input type="file" id="photo" name="Image" class="file-input" >
+            <div class="form-group">
+                <label for="photo">Upload Photo</label>
+                <input type="file" id="photo" name="Image" class="file-input" accept="image/*">
+            </div>
 
-            <button type="button" class="live-location-btn" onclick="getLocation()">Use Live Location</button>
+            <div class="submit-container">
+                <button type="submit" class="submit-btn"> Submit Report</button>
+            </div>
 
-            <button type="submit" class="submit-btn">Submit Report</button>
         </form>
     </div>
 
@@ -125,6 +167,8 @@
                     let lat = position.coords.latitude;
                     let lon = position.coords.longitude;
                     document.getElementById('location').value = `Lat: ${lat}, Lon: ${lon}`;
+                }, () => {
+                    alert("Unable to retrieve your location. Please allow location access.");
                 });
             } else {
                 alert("Geolocation is not supported by this browser.");
