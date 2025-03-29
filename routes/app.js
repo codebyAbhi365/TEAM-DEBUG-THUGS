@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const {createUser} = require("../controller/app")
+const {createUser} = require("../controller/user")
 
 router.get('/signup',(req,res) => {
     res.render("signup")
