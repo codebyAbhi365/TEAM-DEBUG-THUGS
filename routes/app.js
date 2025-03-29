@@ -18,7 +18,6 @@ appRouter.get('/complain',(req,res)=>{
 })
 
 
-
 appRouter.get('/workhome', async (req, res) => {
     const complaints = await complaindata.find();
     
