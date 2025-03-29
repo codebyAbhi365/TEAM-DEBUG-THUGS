@@ -30,6 +30,6 @@ async function showProfile(req, res){
 // }
 
 module.exports = {
-    Mainpage,showProfile,filecomplain,
+    showProfile,filecomplain,
 } 
 
