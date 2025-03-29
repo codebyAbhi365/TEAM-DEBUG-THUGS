@@ -199,7 +199,7 @@
             gap: 10px;
         }
         }
-    </style>
+        </style>
 </head>
 <body>
     <div class="container">
@@ -228,65 +228,29 @@
                 <img width="140px" height="120px" src="/uploads/<%= complain.Image %>" alt=""></div>
 
             </div>
-            <div class="buttons">
+            <!-- <div class="buttons">
                 <button class="btn reject">Reject</button>
                 <button class="btn accept">Accept</button>
-            </div>
+            </div> -->
             
+                <div class="buttons" style="display: flex; justify-content: space-between; margin-top: 10px;">
+                    <button class="btn reject" style="background: #ff4d4d; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer;">Reject</button>
+                    <form action="">
+                        <button class="btn accept" style="background: #10b981; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer;">Accept</button>
+                        <input type="hidden" name="id" value="<%= complain._id %>">
+                    </form>                    
+                </div>
+            </div>            
             <% }) %>
             <div style="width: 100%; height:50px">
 
             </div>
     
-        <!-- <div class="card">
-            <div class="top-section">
                 <div>
-                    <div class="price-distance">Rs. 700 | 3.2km</div>
-                    <div class="location">Connaught Place, New Delhi</div>
+                    <%- include('partials/footer') %>
                 </div>
-                <div class="image-placeholder"><img width="140px" height="120px" src="/images/DSC_7535.jpg" alt="" srcset=""></div>
             </div>
-            <div class="buttons">
-                <button class="btn reject">Reject</button>
-                <button class="btn accept">Accept</button>
-            </div>
-        </div>
-    
-        <div class="card">
-            <div class="top-section">
-                <div>
-                    <div class="price-distance">Rs. 600 | 5.1km</div>
-                    <div class="location">Marine Drive, Mumbai, Maharashtra</div>
-                </div>
-                <div class="image-placeholder"><img width="140px" height="120px" src="/images/aaa.jpg" alt="" srcset=""></div>
-            </div>
-            <div class="buttons">
-                <button class="btn reject">Reject</button>
-                <button class="btn accept">Accept</button>
-            </div>
-        </div> -->
-<!-- 
-</div>
-        <nav class="bottom-nav">
-            <div class="nav-item">
-                <span class="nav-icon"><img src="/images/icons8-home-24.png" alt="" srcset=""></span>
-                <span>Home</span>
-            </div>
-            <div class="nav-item">
-                <span class="nav-icon"><img height="20px" width="20px" src="/images/maps-and-flags.png" alt="" srcset=""></span>
-                <span>Location</span>
-            </div>
-            <div class="nav-item">
-                <span class="nav-icon"><img height="20px" width="20px" src="/images/badge.png" alt="" srcset=""></span>
-                <span>Reward</span>
-            </div>
-            <div class="nav-item">
-                <span class="nav-icon">&#128100;</span>
-                <span>Profile</span>
-            </div>
-        </nav>
-    </div>
--->
+
 <script>
 
    const locvalue=document.getElementById(`locationvalue`).innerText
@@ -312,8 +276,5 @@ const googleMapsUrl = `https://www.google.com/maps?q=${latitude},${longitude}`;
 document.getElementById("mapLink").href = googleMapsUrl;
 
 </script>
-
-    </div>
-    <%- include('partials/footer') %>
 </body>
 </html>
