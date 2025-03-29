@@ -9,7 +9,9 @@ appRouter.get('/complain',(req,res)=>{
     res.render(`form.ejs`)
 })
 
-
+appRouter.get(`/workhome`,(req,res)=>{
+    res.render(`workerhome`)
+})
 
 // const {filecomplain}=require("../controller/app")
 

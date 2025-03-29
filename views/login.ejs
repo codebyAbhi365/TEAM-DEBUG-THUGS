@@ -10,7 +10,8 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: linear-gradient(135deg, #8FBC8F, #556B2F);
+            
+            background-size: cover;
             font-family: Arial, sans-serif;
             overflow: hidden;
         }
@@ -26,6 +27,9 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            background-image: url(/images/Sky\ Blue\ Simple\ Minimalist\ Illustration\ Do\ More\ Trash\ Bash\ Campaign\ Your\ Story.png); 
+            background-size: cover;
+            background-position: center;
         }
         h2 {
             color: #556B2F;
@@ -51,8 +55,10 @@
             position: absolute;
             right: 10px;
             top: 50%;
+            transform: translateY(-50%);
             cursor: pointer;
             color: #666;
+            font-size: 16px;
         }
         button {
             width: 100%;
@@ -69,12 +75,21 @@
             transform: translateY(-2px);
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
         }
-        p {
-            margin-top: 10px;
+        .signup-link {
+            margin-top: 20px; /* Increased spacing */
             color: #556B2F;
-            cursor: pointer;
             font-weight: bold;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+            transition: color 0.3s ease;
         }
+        
+        .signup-link:hover {
+            color: #6B8E23;
+            text-decoration: underline;
+        }
+        
     </style>
 </head>
 <body>
@@ -85,24 +100,25 @@
                 <input type="email" placeholder="Email" name="Email">
             </div>
             <div class="input-container">
-                <input type="password" id="password" placeholder="Passeord" name="Pass">
-                <span class="toggle-password"></span>
+                <input type="password" id="password" placeholder="Password" name="Pass">
+                <span class="toggle-password" onclick="togglePassword()">👁</span>
             </div>
-            <button>Login</button>
-         </form>
+            <button type="submit">Login</button>
+        </form>
+        <br>
+        
         <a href="/signup">Don't have an account? Sign Up</a>
     </div>
     
     <script>
-        function togglePassword(id = "password") {
-            var passwordField = document.getElementById(id);
+        function togglePassword() {
+            var passwordField = document.getElementById("password");
             if (passwordField.type === "password") {
                 passwordField.type = "text";
             } else {
                 passwordField.type = "password";
             }
         }
-        
     </script>
 </body>
 </html>

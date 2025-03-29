@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cleaning Service</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8f9fa;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .notification {
+            position: relative;
+        }
+        .badge {
+            background: red;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            font-size: 12px;
+        }
+        .search-bar {
+            display: flex;
+            gap: 5px;
+            margin-top: 10px;
+        }
+        .search-bar input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .search-bar button {
+            padding: 10px;
+            border: none;
+            background: #ddd;
+            border-radius: 5px;
+        }
+         .card {
+            background: black;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+        .card-info p {
+            margin: 5px 0;
+        }
+        .card-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .reject {
+            background: red;
+            padding: 10px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        .accept {
+            background: green;
+            padding: 10px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        } 
+        .placeholder {
+            height: 100px;
+            background: #ccc;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .bottom-nav {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            background: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 14px;
+        }
+        .nav-icon {
+            font-size: 24px;
+        }
+        @media screen and (min-width: 768px) {
+            .container {
+                max-width: 600px;
+            }
+            .bottom-nav {
+                width: 600px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .image{
+                position: relative;
+                left: 220px;
+            }
+            .accept{
+                position: relative;
+                right:45px
+            }
+            .reject{
+                position: relative;
+                left: 45px;
+            }
+
+            .card {
+                left: 30px;
+                position: relative;
+            display: flex;
+            flex-direction: column;
+            background: white;
+            width: 500px;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .top-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price-distance {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .location {
+            font-size: 14px;
+            color: #555;
+            margin-top: 5px;
+        }
+
+        .image-placeholder {
+            width: 140px;
+            height: 120px;
+            background: #ccc;
+            border-radius: 5px;
+            position: relative;
+            left: -40px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            width: 48%;
+        }
+
+        .reject {
+            background: #C63C51;
+            color: white;
+            width: 10vw;
+        }
+
+        .accept {
+            width: 10vw;
+            background: #03C988;
+            color: white;
+        }
+        .cardsection{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h2>Hii Rajesh</h2>
+            <div class="notification">
+                <span class="bell"><img  width="50px" height="50px" src="/images/love-bell.png" alt="" srcset=""></span>
+                <span class="badge">1</span>
+            </div>
+        </header>
+        <div class="search-bar">
+            <input type="text" placeholder="Search Area for Cleaning">
+            <button>+</button>
+        </div>
+        <h3>Available Places For Cleaning</h3>
+
+<div class="cardsection">
+        <div class="card">
+            <div class="top-section">
+                <div>
+                    <div class="price-distance">Rs. 500 | 4.5km</div>
+                    <div class="location">MG Road, Pune, Maharashtra</div>
+                </div>
+                <div class="image-placeholder"><img width="140px" height="120px" src="/images/R.jpg" alt="" srcset=""></div>
+            </div>
+            <div class="buttons">
+                <button class="btn reject">Reject</button>
+                <button class="btn accept">Accept</button>
+            </div>
+        </div>
+    
+        <div class="card">
+            <div class="top-section">
+                <div>
+                    <div class="price-distance">Rs. 700 | 3.2km</div>
+                    <div class="location">Connaught Place, New Delhi</div>
+                </div>
+                <div class="image-placeholder"><img width="140px" height="120px" src="/images/DSC_7535.jpg" alt="" srcset=""></div>
+            </div>
+            <div class="buttons">
+                <button class="btn reject">Reject</button>
+                <button class="btn accept">Accept</button>
+            </div>
+        </div>
+    
+        <div class="card">
+            <div class="top-section">
+                <div>
+                    <div class="price-distance">Rs. 600 | 5.1km</div>
+                    <div class="location">Marine Drive, Mumbai, Maharashtra</div>
+                </div>
+                <div class="image-placeholder"><img width="140px" height="120px" src="/images/aaa.jpg" alt="" srcset=""></div>
+            </div>
+            <div class="buttons">
+                <button class="btn reject">Reject</button>
+                <button class="btn accept">Accept</button>
+            </div>
+        </div>
+
+</div>
+        <nav class="bottom-nav">
+            <div class="nav-item">
+                <span class="nav-icon"><img src="/images/icons8-home-24.png" alt="" srcset=""></span>
+                <span>Home</span>
+            </div>
+            <div class="nav-item">
+                <span class="nav-icon"><img height="20px" width="20px" src="/images/maps-and-flags.png" alt="" srcset=""></span>
+                <span>Location</span>
+            </div>
+            <div class="nav-item">
+                <span class="nav-icon"><img height="20px" width="20px" src="/images/badge.png" alt="" srcset=""></span>
+                <span>Reward</span>
+            </div>
+            <div class="nav-item">
+                <span class="nav-icon">&#128100;</span>
+                <span>Profile</span>
+            </div>
+        </nav>
+    </div>
+</body>
+</html>
