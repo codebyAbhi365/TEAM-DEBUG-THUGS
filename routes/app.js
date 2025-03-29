@@ -4,7 +4,6 @@ const {Mainpage,filecomplain,showProfile} = require("../controller/app")
 
 const complaindata=require(`../models/complain`)
 
-appRouter.get("/" ,Mainpage);
 appRouter.post(`/complain`, filecomplain)
 
 appRouter.get('/complain',(req,res)=>{
@@ -14,7 +13,6 @@ appRouter.get('/complain',(req,res)=>{
 appRouter.get('/workhome', async (req, res) => {
 
     const complaints = await complaindata.find();
-    console.log(complaints);
     
 // { complaints })
     res.render('workerhome',{complaints}); 
@@ -33,6 +31,10 @@ appRouter.get("/profile", showProfile);
 //     })
 
 appRouter.post('fillcomplain',filecomplain)
+
+appRouter.get("/", (req, res)=>{
+    return res.render("homepage");
+})
     
 
 module.exports = appRouter;

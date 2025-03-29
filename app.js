@@ -3,6 +3,7 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const app = express();
 const PORT = 5000;
+const User = require("./models/worker")
 
 const router=require(`./routes/user`)
 const appRouter = require("./routes/app")
@@ -22,6 +23,24 @@ app.use(express.static("public"));
 //setting up veiw engine as ejs
 app.set("view engine" , "ejs");
 app.set("views" , path.resolve("views"));
+
+// Middleware to Fetch User from UID in Cookie
+app.use(async (req, res, next) => {
+    try {
+        const uid = req.cookies?.id;
+        console.log(uid);
+        if (uid) {
+            const user = await User.findById(uid) // Find user by UID
+            res.locals.user = user || null; // Store user in res.locals
+        } else {
+            res.locals.user = null;
+        }
+    } catch (error) {
+        console.error("Error fetching user:", error);
+        res.locals.user = null;
+    }
+    next();
+});
 
 app.use("/home", appRouter);
 app.use("/" , router);
