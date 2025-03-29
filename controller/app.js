@@ -12,11 +12,10 @@ async function createUser(req, res){
 }
 
 
-
-
-
-
+async function Mainpage(req, res) {
+    res.redirect("/home");
+}
 
 module.exports = {
-    createUser,
+    Mainpage, creatUser
 }
