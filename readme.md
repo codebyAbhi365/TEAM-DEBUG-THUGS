@@ -13,17 +13,26 @@ This project encourages public participation in waste management by offering rew
 
 The process flow is as follows:
 	1.	User Login (Student/Public)
+ 
 	2.	Report Garbage (Photo + GPS)
+ 
 	3.	Validation (10 Complaints Needed)
+ 
 	4.	Cleanup and Proof Upload
+ 
 	5.	Earn Points for Cleanups
+ 
 	6.	Redeem Points (e.g., Bus Pass, Discounts)
 
 #🔧Tech Stack
 	•	Frontend: React, HTML, CSS, JavaScript
+ 
 	•	Backend: Node.js, Express
+ 
 	•	Database: MongoDB
+ 
 	•	Cloud: AWS/GCP for hosting and file storage
+ 
 	•	APIs: Google Maps API for location tracking
 
 
