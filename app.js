@@ -5,6 +5,7 @@ const app = express();
 const PORT = 5000;
 const User = require("./models/worker")
 const multer=require(`multer`)
+// const Accepted = require('../models/Accepted');
 
 const router=require(`./routes/user`)
 const appRouter = require("./routes/app")
@@ -72,8 +73,13 @@ app.get(`/homepage`,(req,res)=>{
         res.render(`map`)
     })
 
+    app.get(`/submit`,(req,res)=>{
+        res.render(`submission`)
+    })
 
-
+    app.get(`/reward`,(req,res)=>{
+        res.render(`rewards`)
+    })
 
 
 

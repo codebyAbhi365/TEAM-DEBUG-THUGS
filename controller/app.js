@@ -1,7 +1,7 @@
 const complaindata = require("../models/complain");
 const User = require("../models/worker");
 const { getUser } = require("../service/auth");
-const Accepted = require("../models/Accepted"); // Import the Accepted model
+// const Accepted = require("../models/Accepted"); // Import the Accepted model
 
 // async function filecomplain (req, res){
 //     const {Name,Location,Image}=await req.body
