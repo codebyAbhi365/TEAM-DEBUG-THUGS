@@ -12,6 +12,7 @@ This project encourages public participation in waste management by offering rew
 ##Flow Diagram
 
 The process flow is as follows:
+
 	1.	User Login (Student/Public)
  
 	2.	Report Garbage (Photo + GPS)
@@ -25,6 +26,7 @@ The process flow is as follows:
 	6.	Redeem Points (e.g., Bus Pass, Discounts)
 
 #🔧Tech Stack
+
 	•	Frontend: React, HTML, CSS, JavaScript
  
 	•	Backend: Node.js, Express
