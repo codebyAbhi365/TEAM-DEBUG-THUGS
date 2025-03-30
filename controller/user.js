@@ -45,8 +45,8 @@ async function loginUser(req, res){
     res.cookie("id", userId.toString())
     console.log(userId.toString())
     setUser(sessionId, user);
-    console.log("Setting User in Map:", sessionId, user);
-    console.log("Session Map After setUser:", sessionIdToUserMap);
+    // console.log("Setting User in Map:", sessionId, user);
+    // console.log("Session Map After setUser:", sessionIdToUserMap);
 
 
     return res.redirect("/home");
