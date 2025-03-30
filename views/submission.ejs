@@ -129,19 +129,44 @@
     <!-- Include External Header -->
     <%- include('partials/header') %>
 
+
     <div class="container">
-        <div class="form-container">
-            <input type="text" placeholder="Name">
-            <input type="text" placeholder="Phone Number">
-            <div class="upload-section">
-                <input type="text" placeholder="Before Image" disabled>
-                <span class="upload-btn">Add File</span>
-            </div>
-            <div class="upload-section">
-                <input type="text" placeholder="After Image" disabled>
-                <span class="upload-btn">Add File</span>
-            </div>
-            <button class="upload-button">Upload</button>
+
+        <!-- <form action="progress.ejs" onsubmit="updateCounter()"> -->
+            
+            
+            
+            
+            <!-- <button type="submit">Submit Form</button> -->
+            
+            <div class="form-container">
+                <input type="text" placeholder="Name">
+                <input type="text" placeholder="Phone Number">
+
+                <div class="upload-section">
+                    <input type="file" id="beforeImage" accept="image/*" hidden>
+                    <input type="text" id="beforeImageText" placeholder="Before Image" readonly>
+                    <button type="button" class="upload-btn" onclick="document.getElementById('beforeImage').click()">Add File</button>
+                </div>
+                
+                <div class="upload-section">
+                    <input type="file" id="afterImage" accept="image/*" hidden>
+                    <input type="text" id="afterImageText" placeholder="After Image" readonly>
+                    <button type="button" class="upload-btn" onclick="document.getElementById('afterImage').click()">Add File</button>
+                </div>
+
+<!--                 
+                <div class="upload-section">
+                    <input type="file" placeholder="Before Image" disabled>
+                    <button type="button " class="upload-btn">Add File</button>
+                </div>
+                <div class="upload-section">
+                    <input type="file" placeholder="After Image" disabled>
+                    <button  type="button" class="upload-btn">Add File</button>
+                </div> -->
+                <form action="/reward" onsubmit="updateCounter()">
+            <button  type="submit" class="upload-button">Upload</button>
+            </form>
         </div>
         <div class="complaints-container">
             <% accepted.forEach(element => { %>
@@ -163,5 +188,37 @@
     <!-- Include External Footer -->
     <%- include('partials/footer') %>
 
+            <script>
+                function updateCounter() {
+                    let count = localStorage.getItem("cleaningTasks") || 0;
+                    count = parseInt(count) + 1;
+                    localStorage.setItem("cleaningTasks", count);
+                }
+
+
+               
+        function submitForm(event) {
+            event.preventDefault();
+            
+            let name = document.getElementById('name').value;
+            let phone = document.getElementById('phone').value;
+            let beforeFile = document.getElementById('beforeImage').files[0];
+            let afterFile = document.getElementById('afterImage').files[0];
+            
+            if (beforeFile && afterFile) {
+                let beforeUrl = URL.createObjectURL(beforeFile);
+                let afterUrl = URL.createObjectURL(afterFile);
+                
+                document.getElementById('taskName').innerText = `Name: ${name}`;
+                document.getElementById('taskPhone').innerText = `Phone: ${phone}`;
+                document.getElementById('beforeImg').src = beforeUrl;
+                document.getElementById('afterImg').src = afterUrl;
+                
+                document.getElementById('taskCard').style.display = 'block';
+            }
+        }
+   
+
+            </script>
 </body>
 </html>

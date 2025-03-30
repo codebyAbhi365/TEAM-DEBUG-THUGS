@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rewards</title>
+    <!-- <link rel="stylesheet" href="rewards.css"> -->
+     <style>
+        body {
+    font-family: Arial, sans-serif;
+    background: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 95%;
+    max-width: 450px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.reward {
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    position: relative;
+}
+
+.progress-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 10px;
+}
+
+.progress-circle {
+    transform: rotate(-90deg);
+    position: absolute;
+}
+
+.bg {
+    fill: none;
+    stroke: #ddd;
+    stroke-width: 6;
+}
+
+.fg {
+    fill: none;
+    stroke: #10b981;
+    stroke-width: 6;
+    stroke-linecap: round;
+    transition: stroke-dasharray 0.5s ease-in-out;
+}
+
+.progress-text {
+    position: absolute;
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.remaining {
+    font-size: 14px;
+    color: gray;
+}
+
+.unlock {
+    background: #bbb;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: not-allowed;
+    width: 100%;
+    font-size: 14px;
+}
+
+     </style>
+</head>
+<body>
+    <div class="container">
+        <h2> Get Rewards </h2>
+        <div class="reward">
+            <div class="progress-container">
+                <svg class="progress-circle" width="80" height="80">
+                    <circle cx="40" cy="40" r="30" class="bg"></circle>
+                    <circle cx="40" cy="40" r="30" class="fg" style="stroke-dasharray: 60 100;"></circle>
+                </svg>
+                <span class="progress-text">3/5</span>
+            </div>
+            <p class="title">🏅 Get Your Certificate</p>
+            <p class="remaining">2 More Areas To Clean</p>
+            <button class="unlock">Unlock</button>
+        </div>
+        <div class="reward">
+            <div class="progress-container">
+                <svg class="progress-circle" width="80" height="80">
+                    <circle cx="40" cy="40" r="30" class="bg"></circle>
+                    <circle cx="40" cy="40" r="30" class="fg" style="stroke-dasharray: 50 100;"></circle>
+                </svg>
+                <span class="progress-text">5</span>
+            </div>
+            <p class="title">🎟️ Get Your Bus Pass</p>
+            <p class="remaining">5 More Areas To Clean</p>
+            <button class="unlock">Unlock</button>
+        </div>
+        <div class="reward">
+            <div class="progress-container">
+                <svg class="progress-circle" width="80" height="80">
+                    <circle cx="40" cy="40" r="30" class="bg"></circle>
+                    <circle cx="40" cy="40" r="30" class="fg" style="stroke-dasharray: 70 100;"></circle>
+                </svg>
+                <span class="progress-text">4</span>
+            </div>
+            <p class="title">🚆 Get Your Metro Pass</p>
+            <p class="remaining">4 More Areas To Clean</p>
+            <button class="unlock">Unlock</button>
+        </div>
+    </div>
+
+    <!-- <button onclick="resetCounter()" style="background: red; color: white; padding: 10px; border: none; border-radius: 6px; margin-top: 20px;">Reset Progress</button> -->
+
+    <script>
+       
+    document.addEventListener("DOMContentLoaded", function () {
+        let count = localStorage.getItem("cleaningTasks") || 0;
+        count = parseInt(count);
+
+        // Update all progress circles dynamically
+        const progressTexts = document.querySelectorAll(".progress-text");
+        const fgCircles = document.querySelectorAll(".fg");
+
+        progressTexts.forEach((text, index) => {
+            let required = [5, 7, 9][index];  // Example task limits
+            let progress = Math.min((count / required) * 100, 100);
+            text.innerText = `${count}/${required}`;
+            fgCircles[index].style.strokeDasharray = `${progress} 100`;
+
+            // Unlock button if tasks are completed
+            if (count >= required) {
+                let button = document.querySelectorAll(".unlock")[index];
+                button.style.background = "#10b981";
+                button.style.cursor = "pointer";
+                button.innerText = "Claim Reward!";
+                button.removeAttribute("disabled");
+            }
+        });
+    });
+
+    function resetCounter() {
+        localStorage.removeItem("cleaningTasks");
+        alert("Progress has been reset!");
+        location.reload(); // Refresh to apply changes
+    }
+</script>
+
+   
+</body>
+</html>
