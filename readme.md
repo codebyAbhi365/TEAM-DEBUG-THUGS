@@ -41,7 +41,7 @@ The process flow is as follows:
 
 ## 📂 Installation  
 ```bash
-git clone https://github.com/codebyAbhi365/Crescendo-Hackathon
+git clone https://github.com/codebyAbhi365/TEAM-DEBUG-THUGS.git
 cd project-folder  
 npm install  
 npm start  
