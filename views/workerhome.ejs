@@ -95,6 +95,7 @@
             background: white;
             position: fixed;
             bottom: 0;
+            left: 760px;
             width: 100%;
             box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
         }
@@ -227,25 +228,22 @@
                     <img width="140px" height="120px" src="/uploads/<%= complain.Image %>" alt=""></div>
                 </div>
                 
-                <div class="buttons" style="display: flex; justify-content: space-between; margin-top: 10px;">
+                <!-- <div class="buttons" style="display: flex; justify-content: space-between; margin-top: 10px;">
                     <button class="btn reject" style="background: #ff4d4d; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer;">Reject</button>
                     <form action="">
                         <button class="btn accept" style="background: #10b981; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer;">Accept</button>
                         <input type="hidden" name="id" value="<%= complain._id %>">
-            </div>
+            </div> -->
             <!-- <div class="buttons">
                 <button class="btn reject">Reject</button>
                 <button class="btn accept">Accept</button>
             </div> -->
             
-<<<<<<< HEAD
-=======
                 <div class="buttons" style="display: flex; justify-content: space-between; margin-top: 10px;">
                     <button class="btn reject" style="background: #ff4d4d; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer;">Reject</button>
                     <form action="/home/submission" method="POST">
                         <button class="btn accept" style="background: #10b981; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer;">Accept</button>
                         <input type="hidden" name="id" value="<%= complain._id %>">
->>>>>>> 2c8a57635288663823ff6531d2ed4802b1c4d0aa
                     </form>                    
                 </div>
             </div>            
