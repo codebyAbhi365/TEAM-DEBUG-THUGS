@@ -5,7 +5,7 @@ const app = express();
 const PORT = 5000;
 const User = require("./models/worker")
 const multer=require(`multer`)
-// const Accepted = require('../models/Accepted');
+const Accepted = require('./models/request');
 
 const router=require(`./routes/user`)
 const appRouter = require("./routes/app")
@@ -44,6 +44,23 @@ app.use(async (req, res, next) => {
         res.locals.user = null;
     }
     next();
+});
+app.post("/home/submission", async (req, res) => {
+    try {
+        const { id } = req.body;
+        
+        // Mark the complaint as accepted (update database or move it)
+        await Accepted.updateOne(
+            { userId: req.cookies.id }, 
+            { $push: { complains: id } },
+            { upsert: true }
+        );
+
+        res.json({ success: true });
+    } catch (error) {
+        console.error("Error accepting complaint:", error);
+        res.json({ success: false });
+    }
 });
 
 app.use("/home", appRouter);

@@ -241,7 +241,7 @@
             
                 <div class="buttons" style="display: flex; justify-content: space-between; margin-top: 10px;">
                     <button class="btn reject" style="background: #ff4d4d; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer;">Reject</button>
-                    <form action="/home/submission" method="POST">
+                    <form action="/home/submission" method="POST" onsubmit="removeCard(event, this)">
                         <button class="btn accept" style="background: #10b981; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer;">Accept</button>
                         <input type="hidden" name="id" value="<%= complain._id %>">
                     </form>                    
@@ -281,6 +281,32 @@ const googleMapsUrl = `https://www.google.com/maps?q=${latitude},${longitude}`;
 // locvalue.innerText=`${googleMapsUrl}`
 
 document.getElementById("mapLink").href = googleMapsUrl;
+
+function removeCard(event, form) {
+    event.preventDefault(); // Prevent default form submission
+    const card = form.closest(".card"); // Find the nearest parent card
+
+    const complaintId = form.querySelector("input[name='id']").value; // Get complaint ID
+
+    // Send request to the server to mark the complaint as accepted
+    fetch("/home/submission", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: complaintId }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            card.remove(); // Remove the card from the DOM
+        } else {
+            alert("Failed to accept the request.");
+        }
+    })
+    .catch(error => console.error("Error:", error));
+}
+
 
 </script>
 </body>

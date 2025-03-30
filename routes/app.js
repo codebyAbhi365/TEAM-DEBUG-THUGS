@@ -22,17 +22,11 @@ appRouter.get('/complain',(req,res)=>{
 })
 
 
+
+
 appRouter.get('/workhome', async (req, res) => {
     const complaints = await complaindata.find();
     
-    // const complaints = await complaindata.find();
-    // console.log(complaints);
-
-    // const location=await maplocation.find(Location);
-    // console.log(location);
-    
-    
-    // { complaints })
     res.render('workerhome',{complaints}); 
 });
 
