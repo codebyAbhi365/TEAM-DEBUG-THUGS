@@ -1,11 +1,12 @@
 const mongoose=require(`mongoose`);
 
 function ConnectTOMongoDB(){
-    mongoose.connect(`mongodb+srv://admin121:<db_password>@cluster0.1rhazaf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`)
+    mongoose.connect(`mongodb+srv://rohitkdm666:4TEJqu62VQ3EeUeQ@cluster0.s8g3fxw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`)
     .then(() => {
         console.log("MongoDB Connected");
     })
 }
+// password:4TEJqu62VQ3EeUeQ
 
 module.exports = ConnectTOMongoDB;
 
