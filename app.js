@@ -84,6 +84,46 @@ app.get(`/homepage`,(req,res)=>{
     //
 
 
+    // app.get(`/map/:id`,(req,res)=>{
+
+
+    //     const loc=id
+
+    // })
+
+    app.get('/map/:id', async (req, res) => {
+
+        const complainId =req.params.id
+        // const locationString = req.params.location;  // Extracting location from URL
+
+        const complain=await complaindata.findById(complainId)
+
+        const locationvalue=complain.Location
+    
+        // console.log("Raw Location Data:", locationString);
+    
+        // Assuming location is in the format: "Lat: 18.464388, Lon: 73.867729"
+        const [latPart, lonPart] = locationvalue.replace("Lat: ", "").replace("Lon: ", "").split(", ");
+    
+        const latitude = parseFloat(latPart);
+        const longitude = parseFloat(lonPart);
+    
+        if (isNaN(latitude) || isNaN(longitude)) {
+            return res.status(400).send("Invalid location format");
+        }
+    
+        
+    
+        // Generate Google Maps URL
+        const googleMapsUrl = `https://www.google.com/maps?q=${latitude},${longitude}`;
+
+        
+        
+    
+        // Redirect user to Google Maps
+        res.redirect(googleMapsUrl);
+    });
+    
 
     
     app.get(`/getmap`,(req,res)=>{
