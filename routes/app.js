@@ -27,8 +27,9 @@ appRouter.get('/complain',(req,res)=>{
 appRouter.get('/workhome', async (req, res) => {
     const complaints = await complaindata.find();
     
-    res.render('workerhome',{complaints}); 
+    res.render('workerhome_2.ejs',{complaints}); 
 });
+
 
 
 appRouter.get("/profile", showProfile); 
