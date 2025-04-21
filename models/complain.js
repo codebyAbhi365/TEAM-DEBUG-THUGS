@@ -7,6 +7,10 @@ const cschema=mongoose.Schema({
     type:String,
     required:false
    },
+   Area:{
+      type:String,
+      required:true
+   },
    Location:{
     type:String,
     required:false
