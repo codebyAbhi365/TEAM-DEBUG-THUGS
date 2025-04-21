@@ -860,7 +860,7 @@
     </style>
 </head>
 <body>
-    <header>
+    <!-- <header>
         <div class="container header-content">
             <div class="logo">
                 <i class="fas fa-leaf"></i>
@@ -871,7 +871,8 @@
                 <span>Profile</span>
             </button>
         </div>
-    </header>
+    </header> -->
+    <%- include("partials/header_2") %>
     
     <section class="hero">
         <div class="container">
@@ -995,8 +996,10 @@
                                 Updated: 24/03/2025
                             </div>
                         </div>
-    
-                        <p class="location-description">This area needs immediate attention with significant waste
+                        <h2 class="location-title">
+                            Complain Raiser: <%= complain.Name %>
+                        </h2>
+                        <p style="margin-top: 10px;" class="location-description">This area needs immediate attention with significant waste
                             accumulation affecting local residents. Join us to transform this space into a clean
                             environment.</p>
     
@@ -1035,60 +1038,6 @@
             </div>
     
          <% }) %>
-         
-        <div class="location-card">
-            <div class="location-image">
-                <img src="IMAGES/main.jpg" alt="Aundh Park Location">
-            </div>
-            <div class="location-info">
-                <div>
-                    <div class="location-header">
-                        <h3 class="location-title">
-                            <i class="fas fa-exclamation-circle"></i>
-                            Aundh Park Area, Pune
-                        </h3>
-                        <div class="location-date">
-                            <i class="far fa-calendar-alt"></i>
-                            Updated: 29/03/2025
-                        </div>
-                    </div>
-
-                    <p class="location-description">Help restore this community park to its former glory. Plastic waste
-                        and debris are affecting this popular recreational space.</p>
-
-                    <div class="progress-bar">
-                        <div class="progress" id="progress2"></div>
-                    </div>
-
-                    <div class="location-stats">
-                        <div class="stat">
-                            <div class="stat-value">8</div>
-                            <div class="stat-label">Volunteers</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">42%</div>
-                            <div class="stat-label">Completed</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">5</div>
-                            <div class="stat-label">Days Left</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="location-footer">
-                    <div class="volunteers">
-                        <div class="volunteer">P</div>
-                        <div class="volunteer">K</div>
-                        <div class="volunteer">+6</div>
-                    </div>
-                    <button class="join-btn pulse" onclick="goToAreaDetails()">
-                        <i class="fas fa-plus"></i>
-                        Accept Challenge
-                    </button>                    
-                </div>
-            </div>
-        </div>
     </section>
 
     <div class="floating-action">

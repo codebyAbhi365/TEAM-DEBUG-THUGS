@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CleanCity</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', sans-serif;
+        }
+        
+        header {
+            background: #00695c;
+            color: white;
+            padding: 1rem 0;
+            position: relative;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .logo i {
+            margin-right: 0.5rem;
+            color: #ffd54f;
+        }
+        
+        .profile-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        
+        .profile-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Hamburger menu styles */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+            margin-right: 1rem;
+        }
+        
+        .hamburger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background: white;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        /* Navigation menu */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin-left: 2rem;
+            
+        }
+        
+        .nav-menu li {
+            margin-right: 1.5rem;
+        }
+        
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+        
+        .nav-menu a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #ffd54f;
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        .nav-menu a:hover:after {
+            width: 100%;
+        }
+        
+        /* Mobile menu styles */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 40%;
+                height: calc(100vh - 70px);
+                background:  #00695c;
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                top: 67px;
+                transition: left 0.3s ease;
+                z-index: 100;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-menu li {
+                margin: 1rem 0;
+            }
+            
+            .logo {
+                margin-left: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="logo">
+                <i class="fas fa-leaf"></i>
+                <span>CleanCity</span>
+            </div>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="/homepage"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="/home/workhome"><i class="fas fa-broom"></i> Worker Request</a></li>
+                <li><a href="/getmap"><i class="fas fa-map-marked-alt"></i> Map</a></li>
+                <li><a href="/home/submission"><i class="fas fa-trophy"></i> Complete Task </a></li>
+                <li><a href="/reward"><i class="fas fa-cog"></i> Reward</a></li>
+            </ul>
+            
+            <ul class="nav-menu">
+                <li>
+                    <a href="/home/profile">
+                        <button class="profile-btn">
+                            <i class="fas fa-user"></i>
+                            <span class="profile-text">Profile</span>
+                        </button>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <script>
+        // Toggle mobile menu
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+            
+            // Animate hamburger to X
+            const hamburger = document.querySelector('.hamburger');
+            hamburger.classList.toggle('active');
+        }
+        
+        // Profile navigation
+        function goToProfileDetails() {
+            window.location.href = '/home/profile';
+        }
+        
+        // Close menu when clicking on a link (for mobile)
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                const navMenu = document.getElementById('navMenu');
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    document.querySelector('.hamburger').classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
