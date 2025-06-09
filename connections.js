@@ -1,7 +1,7 @@
 const mongoose=require(`mongoose`);
 
 function ConnectTOMongoDB(){
-    mongoose.connect(`mongodb+srv://rohitkdm666:4TEJqu62VQ3EeUeQ@cluster0.s8g3fxw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`)
+    mongoose.connect(`mongodb://localhost:27017/Clean-City`)
     .then(() => {
         console.log("MongoDB Connected");
     })

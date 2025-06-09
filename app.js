@@ -54,7 +54,7 @@ app.post("/home/submission", async (req, res) => {
     // Mark the complaint as accepted (update database or move it)
     await Accepted.updateOne(
       { userId: req.cookies.id },
-      { $push: { complains: id } },
+      { $push: { complains: id }},
       { upsert: true }
     );
 
