@@ -420,64 +420,66 @@
                 <div class="stat-icon pending">
                     <i class="fas fa-clock"></i>
                 </div>
-                <div class="stat-number">8</div>
+                <div class="stat-number"><%= pending_count %></div>
                 <div class="stat-label">Pending Requests</div>
             </div>
             <div class="stat-card">
                 <div class="stat-icon approved">
                     <i class="fas fa-check-circle"></i>
                 </div>
-                <div class="stat-number">23</div>
+                <div class="stat-number"><%= approved_count %></div>
                 <div class="stat-label">Approved</div>
             </div>
             <div class="stat-card">
                 <div class="stat-icon rejected">
                     <i class="fas fa-times-circle"></i>
                 </div>
-                <div class="stat-number">5</div>
+                <div class="stat-number"><%= rejected_count %></div>
                 <div class="stat-label">Rejected</div>
             </div>
         </div>
 
         <section class="request-list">
             <% complaints.forEach(complain => { %>
+                <% if (complain.status === 'pending') { %>
                 <div class="request-card priority-high">
-                <div class="request-image">
-                    <img src="/uploads/<%= complain.Image %>" >
-                    <div class="status-badge">Pending</div>
-                </div>
-                <div class="request-info">
-                    <div class="request-header">
-                        <h2><i class="fas fa-map-marker-alt"><%= complain.Area %></i></h2>
-                        <div class="request-meta">
-                            <div class="meta-item">
-                                <i class="fas fa-calendar"></i>
-                                March 24, 2025
-                            </div>
-                            <div class="meta-item">
-                                <i class="fas fa-user"></i>
-                                <%= complain.Name %>
-                            </div>
-                            <div class="meta-item">
-                                <i class="fas fa-exclamation-triangle"></i>
-                                High Priority
+                    <div class="request-image">
+                        <img src="/uploads/<%= complain.Image %>" >
+                        <div class="status-badge">Pending</div>
+                    </div>
+                    <div class="request-info">
+                        <div class="request-header">
+                            <h2><i class="fas fa-map-marker-alt"><%= complain.Area %></i></h2>
+                            <div class="request-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-calendar"></i>
+                                    March 24, 2025
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-user"></i>
+                                    <%= complain.Name %>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    High Priority
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <p class="request-description">
-                        Overflowing garbage and water clogging behind dairy facility. The area has become a breeding ground for mosquitoes and other pests, creating health hazards for nearby residents. Immediate attention required to prevent disease spread.
-                    </p>
-                    <div class="request-actions">
-                        <button class="action-btn details-btn">
-                            <i class="fas fa-info-circle"></i>
-                            View Details
-                        </button>
-                        <button class="action-btn accept-btn"  onclick="approveComplaint('<%= complain._id %>')" class="btn btn-success"><i class="fas fa-check"></i>✔ ACCEPT</button>
-                        <button class="action-btn reject-btn" onclick="rejectComplaint('<%= complaint._id %>')" class="btn btn-danger"><i class="fas fa-times"></i>❌ REJECT</button>
+                        <p class="request-description">
+                            Overflowing garbage and water clogging behind dairy facility. The area has become a breeding ground for mosquitoes and other pests, creating health hazards for nearby residents. Immediate attention required to prevent disease spread.
+                        </p>
+                        <div class="request-actions">
+                            <button class="action-btn details-btn">
+                                <i class="fas fa-info-circle"></i>
+                                View Details
+                            </button>
+                            <button class="action-btn accept-btn"  onclick="approveComplaint('<%= complain._id %>')" class="btn btn-success"><i class="fas fa-check"></i>✔ ACCEPT</button>
+                            <button class="action-btn reject-btn" onclick="rejectComplaint('<%= complain._id %>')" class="btn btn-danger"><i class="fas fa-times"></i>❌ REJECT</button>
+                        </div>
                     </div>
                 </div>
-            </div>
              
+                <% } %>
             <% }) %>
 
         </section>
