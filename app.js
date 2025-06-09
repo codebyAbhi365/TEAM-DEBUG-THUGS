@@ -9,6 +9,9 @@ const Accepted = require("./models/request");
 
 const router = require(`./routes/user`);
 const appRouter = require("./routes/app");
+const adminRouter = require("./routes/admin");
+
+
 const { restrictToLoginUserOnly } = require("./middlewares/auth");
 
 const complaindata = require(`./models/complain`);
@@ -68,11 +71,7 @@ app.post("/home/submission", async (req, res) => {
 
 app.use("/home", appRouter);
 app.use("/", router);
-
-app.get(`/homepage`, (req, res) => {
-  res.render(`homepage`);
-});
-
+app.use("/admin",adminRouter);
 
 //Redirecting To map for location
 app.get("/map/:id", async (req, res) => {
@@ -102,8 +101,8 @@ app.get("/map/:id", async (req, res) => {
   res.redirect(googleMapsUrl);
 });
 
-app.get(`/getmap`, (req, res) => {
-  res.render(`map`);
+app.get(`/home/getmap`, (req, res) => {
+  res.render(`map.ejs`);
 });
 
 app.get(`/submit`, (req, res) => {
@@ -135,8 +134,19 @@ app.post(`/fillcomplain`, upload.single("Image"), async (req, res) => {
     Location,
     Image: req.file.filename,
   });
-  res.redirect(`/homepage`);
+  res.redirect(`/home`);
 });
+
+app.post('/mark-completed/:id', async (req, res) => {
+  try {
+    await complaindata.findByIdAndUpdate(req.params.id, { status: 'complete' });
+    res.redirect('/home/submission'); // or wherever your page is
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error marking complaint as completed");
+  }
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server Started on PORT ${PORT}`);

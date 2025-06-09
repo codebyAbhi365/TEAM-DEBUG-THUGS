@@ -18,7 +18,8 @@ const cschema=mongoose.Schema({
    Image:{
     type:String,
     required:false
-   }
+   },
+   status: { type: String, enum: ['pending', 'approved', 'rejected', 'userAccepted', 'complete'], default: 'pending' }
 
 })
 

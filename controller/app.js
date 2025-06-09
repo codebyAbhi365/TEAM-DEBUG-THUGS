@@ -37,14 +37,16 @@ async function showProfile(req, res) {
 async function requestAccept(req, res) {
     try {
         const userId = req.cookies?.id;  // Get user ID from cookies
-        const complainId = req.body.id;  // Get complaint ID from request body
+        const complainId = req.body.complaintId;  // Get complaint ID from request body
         console.log(complainId)
+        console.log(userId)
 
         if (!userId) return res.status(400).send("User ID is required!");
         if (!complainId) return res.status(400).send("Complaint ID is required!");
 
         // Check if the complaint exists
         const complain = await complaindata.findById(complainId);
+        await complaindata.findByIdAndUpdate(complainId, { status: 'userAccepted' });
         if (!complain) return res.status(404).send("Complaint not found!");
 
         // Check if the worker has already accepted a complaint
@@ -57,13 +59,13 @@ async function requestAccept(req, res) {
         } else {
             // Check if the complaint is already accepted
             if (accepted.complains.includes(complainId)) {
-                return res.redirect("/home/submission");
+                return res.redirect("/home");
             }
             accepted.complains.push(complainId);
             await accepted.save();
         }
 
-        return res.redirect("/home/submission"); // Redirect after accepting the request
+        return res.redirect("/home"); // Redirect after accepting the request
     } catch (error) {
         console.error("Error accepting request:", error);
         res.status(500).json({ error: "Internal Server Error" });
@@ -76,7 +78,7 @@ async function showRequest(req, res) {
         if (!userId) return res.status(400).send("User not authenticated");
 
         // Find accepted complaints for the logged-in user and populate the complains field
-        const acceptedData = await Accepted.findOne({ userId }).populate("complains");
+        const acceptedData = await Accepted.findOne({ userId}).populate("complains");
 
         res.render("submission.ejs", { accepted: acceptedData ? acceptedData.complains : [] });
 

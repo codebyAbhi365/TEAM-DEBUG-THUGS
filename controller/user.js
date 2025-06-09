@@ -52,7 +52,14 @@ async function loginUser(req, res){
     return res.redirect("/home");
 }
 
+async function LoginAdmin(req, res){
+    const {Email, Pass} = req.body;
+    if(Email=="rohit.kadam242@vit.edu" && Pass == "rk"){
+        return res.redirect('/admin')
+    }
+}
+
 module.exports = {
     createUser,
-    loginUser,
+    loginUser,LoginAdmin,
 }

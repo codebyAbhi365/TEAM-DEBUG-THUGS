@@ -10,7 +10,7 @@ const maplocation=require(`../models/complain`)
 
 const multer=require(`multer`)
 
-appRouter.post("/submission", requestAccept);  // Accept a complaint
+appRouter.post("/accepted/:id", requestAccept);  // Accept a complaint
 
 appRouter.get("/submission", showRequest);  // Show all accepted complaints
 
@@ -24,8 +24,10 @@ appRouter.get('/complain',(req,res)=>{
 
 
 
-appRouter.get('/workhome', async (req, res) => {
-    const complaints = await complaindata.find();
+
+
+appRouter.get('/', async (req, res) => {
+    const complaints = await complaindata.find({ status: 'approved' });
     
     res.render('workerhome_2.ejs',{complaints}); 
 });
@@ -43,9 +45,8 @@ appRouter.get("/profile", showProfile);
 
 // appRouter.post('fillcomplain',filecomplain)
 
-appRouter.get("/", (req, res)=>{
-    return res.render("homepage");
-})
+
+
     
 module.exports = appRouter;
 

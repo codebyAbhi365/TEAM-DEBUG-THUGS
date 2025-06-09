@@ -146,48 +146,36 @@
             position: relative;
             z-index: 2;
         }
-        
-        .search-bar {
-            background: white;
-            display: flex;
-            max-width: 600px;
-            margin: 20px auto 0;
-            border-radius: 50px;
-            overflow: hidden;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-            position: relative;
-            z-index: 2;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+        .filecomplaint a {
+  text-decoration: none;
+}
 
-        .search-bar:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        }
+.filecomplaint .add-area {
+  background-color: #ffffff;
+  color: #007f6e;
+  font-weight: 600;
+  border: 2px solid #00a88f;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 128, 100, 0.2);
+}
+
+.filecomplaint .add-area:hover {
+  background-color: #00a88f;
+  color: #ffffff;
+  box-shadow: 0 6px 10px rgba(0, 128, 100, 0.3);
+  transform: translateY(-2px);
+}
+.filecomplaint {
+  text-align: center;
+  margin-top: 20px;
+}
+
+
         
-        .search-bar input {
-            flex: 1;
-            padding: 15px 25px;
-            border: none;
-            outline: none;
-            font-size: 1rem;
-            font-family: 'Montserrat', sans-serif;
-        }
-        
-        .search-bar button {
-            background: var(--accent);
-            color: var(--dark);
-            border: none;
-            padding: 0 30px;
-            cursor: pointer;
-            font-weight: 600;
-            font-family: 'Montserrat', sans-serif;
-            transition: all 0.3s ease;
-        }
-        
-        .search-bar button:hover {
-            background: #e6a800;
-        }
         
         .section-title {
             margin-bottom: 25px;
@@ -810,9 +798,8 @@
         <div class="container">
             <h1>Make Your Community Clean & Green</h1>
             <p>Join cleanup drives, earn rewards, and make a difference in your neighborhood</p>
-            <div class="search-bar">
-                <input type="text" placeholder="Search for cleaning locations near you...">
-                <button>Find</button>
+            <div class="filecomplaint">
+                <a href="/home/complain" ><button class="add-area" >Click to Give Area Details For Cleaning</button> </a>
             </div>
         </div>
     </section>
@@ -961,10 +948,13 @@
                             <div class="volunteer">A</div>
                             <div class="volunteer">+9</div>
                         </div>
-                        <button class="join-btn pulse" onclick="goToAreaDetails()">
+                        <form action="/home/accepted/<%= complain.id %>" method="POST">
+                            <input type="hidden" name="complaintId" value="<%= complain._id %>">
+                            <button type="submit" class="join-btn pulse">
                             <i class="fas fa-plus"></i>
                             Accept Challenge
-                        </button>                    
+                        </button>  
+                        </form>                  
                     </div>
                 </div>
             </div>

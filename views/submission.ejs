@@ -54,7 +54,7 @@
         }
 
         .content-container {
-            max-width: 500px;
+            max-width: 600px;
             width: 95%;
             margin: 0 auto;
             background: white;
@@ -307,19 +307,23 @@
                     </button>
                 </form>
             </div>
-
             <div class="complaints-container">
                 <% accepted.forEach(element => { %>
-                <div class="task-card">
-                    <img src="/uploads/<%= element.Image %>" alt="Task Image">
-                    <div class="task-info">
+                    <% if (element.status === 'userAccepted') { %>
+                    <div class="task-card">
+                        <img src="/uploads/<%= element.Image %>" alt="Task Image">
+                        <div class="task-info">
+                        <p><i>id :</i> <%= element.id %></p>
                         <p><i class="fas fa-user"></i> <%= element.Name %></p>
                         <p><i class="fas fa-map-marker-alt"></i> <%= element.Location %></p>
-                        <div class="completed-btn">Mark Completed</div>
+                        <form action="/mark-completed/<%= element._id %>" method="POST">
+                            <button type="submit" class="completed-btn">Mark Completed</button>
+                        </form>
+                        </div>
                     </div>
-                </div>
+                    <% } %>
                 <% }) %>
-            </div>
+                </div>
         </div>
     </main>
 
