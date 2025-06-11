@@ -1,4 +1,4 @@
-const complaindata = require("../models/complain");
+const complaindata  = require("../models/complain");
 const User = require("../models/worker");
 const { getUser } = require("../service/auth");
 const mongoose = require("mongoose");
@@ -19,21 +19,53 @@ const Accepted = require("../models/request");
 // Function to show user profile
 
 async function showProfile(req, res) {
-    try {
-        const userUid = req.cookies?.uid;
-        if (!userUid) return res.redirect("/login");
+  try {
+    const userUid = req.cookies?.uid;
+    if (!userUid) return res.redirect("/login");
+
+    const user = await getUser(userUid); // ensure getUser is async
+    if (!user) return res.redirect("/login");
+
+    // Fetch the Accepted complaints for this user
+    const acceptedData = await Accepted.findOne({ userId: user._id });
+
+    let completedCount = 0;
+
+    if (acceptedData && acceptedData.complains.length > 0) {
+      // Count only those complaints that are marked complete
+      completedCount = await complaindata.countDocuments({
+        _id: { $in: acceptedData.complains },
+        status: "complete"
+      });
+    }
+    // console.log("HDFJHDHFDHFJ: "+ completedCount);
+
+    // Send data to profile view
+    res.render("profile", { user, completedCount });
+
+  } catch (error) {
+    console.error("Error loading profile:", error);
+    res.status(500).send("Internal Server Error");
+  }
+}
+
+
+// async function showProfile(req, res) {
+//     try {
+//         const userUid = req.cookies?.uid;
+//         if (!userUid) return res.redirect("/login");
 
         
-        const user = getUser(userUid);
-        if (!user) return res.redirect("/login");
+//         const user = getUser(userUid);
+//         if (!user) return res.redirect("/login");
 
-        req.user = user;
-        res.render("profile", { user });
-    } catch (error) {
-        console.error("Error loading profile:", error);
-        res.status(500).send("Internal Server Error");
-    }
-}
+//         req.user = user;
+//         res.render("profile", { user });
+//     } catch (error) {
+//         console.error("Error loading profile:", error);
+//         res.status(500).send("Internal Server Error");
+//     }
+// }
 
 async function requestAccept(req, res) {
     try {

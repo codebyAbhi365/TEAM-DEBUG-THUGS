@@ -291,21 +291,17 @@
             </div>
 
     <!-- Task submission counter / progress -->
-<div class="task-progress" data-count="1">
+<div class="task-progress" data-count="<%= completedCount %>">
     <h3>Tasks Submitted : </h3>
     <br>
-  <span class="counter"><%= completedCount %>/5</span>
+  <span class="counter"><strong></strong>/5</span>
   <div class="progress-track">
     <div class="progress-fill"></div>
   </div>
 </div>
 
 <!-- Claim-Certificate button -->
-<button id="claimBtn"
-        class="claim-btn"
-         1< 5 ? 'disabled' : '' >
-  Claim Certificate
-</button>
+
 
 
 
@@ -375,7 +371,7 @@
     const container = document.querySelector('.task-progress');
     if (!container) return;
 
-    const max = 5;                                 // hard cap
+    const max = 10;                                 // hard cap
     const count = Math.min(
       parseInt(container.dataset.count, 10) || 0,
       max
