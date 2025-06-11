@@ -1,0 +1,7 @@
+ <% tasks.forEach(task => { %>
+    <div class="achievement-item">
+      <%= task.location %>
+      <img src="/uploads/<%= task.afterImage %>" width="45" height="45" style="border-radius:8px; object-fit:cover;">
+      <span><%= task.name %></span>
+    </div>
+  <% }) %>
