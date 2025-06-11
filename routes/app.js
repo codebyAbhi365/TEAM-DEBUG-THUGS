@@ -46,6 +46,48 @@ appRouter.get("/profile", showProfile);
 // appRouter.post('fillcomplain',filecomplain)
 
 
+const Task = require(`../models/task`);
+const { log } = require('console')
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => cb(null, 'uploads/'),
+    filename: (req, file, cb) => cb(null, Date.now() + '-' + file.originalname)
+});
+
+const upload = multer({ storage: storage });
+
+// appRouter.get('/', async (req, res) => {
+//     const accepted = await Task.find();
+//     res.render('your-submission-page', { accepted });
+// });
+
+appRouter.post('/reward', upload.fields([{ name: 'beforeImage' }, { name: 'afterImage' }]), async (req, res) => {
+
+    const {name,id,location,livelocation}=req.body
+    try {
+        Task.create({
+            name: name,
+            id: id,
+            location: location,
+            liveLocation: livelocation,
+            // beforeImage: req.files['beforeImage'][0].filename,
+            // afterImage: req.files['afterImage'][0].filename
+        });
+        console.log(name,id);
+        // const tasks = await Task.find({});
+        // console.log(tasks);
+        
+        
+        res.redirect('/home');
+    } catch (err) {
+        console.log(err);
+        
+        res.status(500).send('Error submitting task');
+    }
+});
+
+
+
 
     
 module.exports = appRouter;

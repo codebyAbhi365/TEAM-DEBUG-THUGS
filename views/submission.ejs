@@ -54,7 +54,7 @@
         }
 
         .content-container {
-            max-width: 600px;
+            max-width: 500px;
             width: 95%;
             margin: 0 auto;
             background: white;
@@ -269,7 +269,7 @@
                 width: 100%;
             }
         }
-    </style>
+        </style>
 </head>
 <body>
     <%- include('partials/header_2') %>
@@ -280,10 +280,13 @@
                 <i class="fas fa-broom"></i>
                 Cleaning Task Submission
             </h1>
-
+            
+            <form action="/home/reward"  method="POST" enctype="multipart/form-data" onsubmit="updateCounter()">
             <div class="form-container">
-                <input type="text" placeholder="Your Name">
-                <input type="text" placeholder="Phone Number">
+                
+                <input type="text" name="name" placeholder="Your Name">
+                <input type="text"  name="id" placeholder="Task ID">
+                <input type="text" name="location" placeholder="Address">
 
                 <div class="upload-section">
                     <input type="file" id="beforeImage" accept="image/*" hidden>
@@ -301,31 +304,37 @@
                     </button>
                 </div>
 
-                <form action="/reward" onsubmit="updateCounter()">
+
+                <input type="text" id="locationInput" name="livelocation" placeholder="Fetching your location..." readonly>
+<button type="button" class="upload-btn" onclick="getLocation()">
+    <i class="fas fa-map-marker-alt"></i> Get Live Location
+</button>
+
                     <button type="submit" class="upload-button">
                         <i class="fas fa-cloud-upload-alt"></i> Submit Task
                     </button>
-                </form>
-            </div>
+                </div>
+            </form>
+
             <div class="complaints-container">
                 <% accepted.forEach(element => { %>
-                    <% if (element.status === 'userAccepted') { %>
-                    <div class="task-card">
-                        <img src="/uploads/<%= element.Image %>" alt="Task Image">
-                        <div class="task-info">
-                        <p><i>id :</i> <%= element.id %></p>
+                <div class="task-card">
+                    <img src="/uploads/<%= element.Image %>" alt="Task Image">
+                    <div class="task-info">
                         <p><i class="fas fa-user"></i> <%= element.Name %></p>
                         <p><i class="fas fa-map-marker-alt"></i> <%= element.Location %></p>
-                        <form action="/mark-completed/<%= element._id %>" method="POST">
-                            <button type="submit" class="completed-btn">Mark Completed</button>
-                        </form>
-                        </div>
+                        <div class="completed-btn">Mark Completed</div>
                     </div>
-                    <% } %>
-                <% }) %>
                 </div>
+                <% }) %>
+            </div>
         </div>
+
+
+
     </main>
+
+
 
     <%- include('partials/footer_2') %>
 
@@ -365,9 +374,38 @@
             }
         }
 
+
+  function getLocation() {
+    const locationInput = document.getElementById('locationInput');
+
+    if (!navigator.geolocation) {
+        locationInput.placeholder = "Geolocation not supported";
+        return;
+    }
+
+    locationInput.placeholder = "Fetching location...";
+
+    navigator.geolocation.getCurrentPosition(
+        position => {
+            const { latitude, longitude } = position.coords;
+            locationInput.value = `Lat: ${latitude.toFixed(5)}, Lng: ${longitude.toFixed(5)}`;
+        },
+        error => {
+            locationInput.placeholder = "Unable to fetch location";
+        }
+    );
+}
+
+
+
+
+
+
         // Run on load and resize
         window.addEventListener('load', adjustContentPadding);
         window.addEventListener('resize', adjustContentPadding);
+
+
     </script>
 </body>
 </html>

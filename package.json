@@ -1,32 +1,74 @@
 {
-  
+  
   "name": "team-debug-thugs",
+  
   "version": "1.0.0",
+  
   "main": "app.js",
+  
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js"
+  
+    
+  "test": "echo \"Error: no test specified\" && exit 1",
+  
+    
+  "dev": "nodemon app.js"
+  
   },
+  
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/codebyAbhi365/TEAM-DEBUG-THUGS.git"
+  
+    
+  "type": "git",
+  
+    
+  "url": "git+https://github.com/codebyAbhi365/TEAM-DEBUG-THUGS.git"
+  
   },
+  
   "author": "",
+  
   "license": "ISC",
+  
   "bugs": {
-    "url": "https://github.com/codebyAbhi365/TEAM-DEBUG-THUGS/issues"
+  
+    
+  "url": "https://github.com/codebyAbhi365/TEAM-DEBUG-THUGS/issues"
+  
   },
+  
   "homepage": "https://github.com/codebyAbhi365/TEAM-DEBUG-THUGS#readme",
+  
   "description": "",
+  
   "dependencies": {
-    "bcrypt": "^5.1.1",
-    "cookie-parser": "^1.4.7",
-    "ejs": "^3.1.10",
-    "express": "^4.21.2",
-    "ioredis": "^5.6.0",
-    "mongoose": "^8.13.1",
-    "multer": "^1.4.5-lts.2",
-    "nodemon": "^3.1.9",
-    "uuid": "^11.1.0"
+  
+    
+  "bcrypt": "^5.1.1",
+  
+    
+  "cookie-parser": "^1.4.7",
+  
+    
+  "ejs": "^3.1.10",
+  
+    
+  "express": "^4.21.2",
+  
+    
+  "ioredis": "^5.6.0",
+  
+    
+  "mongoose": "^8.13.1",
+  
+    
+  "multer": "^1.4.5-lts.2",
+  
+    
+  "nodemon": "^3.1.9",
+  
+    
+  "uuid": "^11.1.0"
+  
   }
 }

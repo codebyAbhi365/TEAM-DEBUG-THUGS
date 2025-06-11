@@ -127,6 +127,7 @@ const upload = multer({ storage: storage });
 
 //Saving form data and Uploading using multer (form for new garbage complian)
 app.post(`/fillcomplain`, upload.single("Image"), async (req, res) => {
+
   const { Name, Area, Location, Image } = await req.body;
   complaindata.create({
     Name,
