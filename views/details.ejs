@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Complaint Details</title>
+  <link rel="stylesheet" href="/css/complaintDetails.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0fdf4;
+      color: #1b4332;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .details-card {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(34, 139, 34, 0.2);
+      max-width: 800px;
+      width: 100%;
+    }
+
+    h2, h3 {
+      color: #2d6a4f;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #d8f3dc;
+      padding-bottom: 10px;
+    }
+
+    .info p {
+      font-size: 16px;
+      margin: 10px 0;
+    }
+
+    .status {
+      padding: 4px 10px;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .status.pending {
+      background-color: #fffae6;
+      color: #a68c00;
+    }
+
+    .status.complete {
+      background-color: #d8f3dc;
+      color: #2d6a4f;
+    }
+
+    .status.reject {
+      background-color: #ffe6e6;
+      color: #b00020;
+    }
+
+    .image-section {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .image-pair {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .image-pair img {
+      max-width: 100%;
+      width: 250px;
+      height: auto;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+
+    .back-btn {
+      margin-top: 30px;
+      text-align: right;
+    }
+
+    .back-btn a {
+      text-decoration: none;
+      color: white;
+      background-color: #2d6a4f;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .back-btn a:hover {
+      background-color: #1b4332;
+    }
+
+    .match {
+      font-weight: bold;
+      color: green;
+    }
+
+    .mismatch {
+      font-weight: bold;
+      color: red;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="details-card">
+      <h2><i class="fas fa-info-circle"></i> Complaint Details</h2>
+
+      <div class="info">
+        <p><strong>Complaint ID:</strong> <%= complaint._id %></p>
+        <p><strong>Name:</strong> <%= complaint.Name %></p>
+        <p><strong>Location:</strong> <%= complaint.Location %></p>
+        <p><strong>Status:</strong> 
+          <span class="status <%= complaint.status %>">
+            <%= complaint.status.toUpperCase() %>
+          </span>
+        </p>
+        <p><strong>Description:</strong> <%= complaint.Description %></p>
+        <div class="image-section">
+          <p><strong>Complaint Image:</strong></p>
+          <img src="/uploads/<%= complaint.Image %>" alt="Complaint Image" height="250px" width="350px"/>
+        </div>
+      </div>
+
+      <% tasks.forEach(task => { %>
+        <hr>
+        <div class="info">
+          <h3>Task Related to Complaint</h3>
+          <p><strong>Task ID:</strong> <%= task._id %></p>
+          <p><strong>Worker Name:</strong> <%= task.name %></p>
+          
+          <p><strong>Task Location:</strong> <%= task.liveLocation %></p>
+          <p><strong>Location Match:</strong> 
+            <% if (complaint.Location.trim() === task.liveLocation.trim()) { %>
+              <span class="match">✅ Matched</span>
+            <% } else { %>
+              <span class="mismatch">❌ Not Matched</span>
+            <% } %>
+          </p>
+
+          <div class="image-section">
+            <h4>Before vs After</h4>
+            <div class="image-pair">
+              <div>
+                <p><strong>Before:</strong></p>
+                <% if (task.beforeImage) { %>
+                  <img src="/uploads/<%= task.beforeImage %>" alt="Before Image" />
+                <% } else { %>
+                  <p class="mismatch">❌ Not Uploaded</p>
+                <% } %>
+              </div>
+              <div>
+                <p><strong>After:</strong></p>
+                <% if (task.afterImage) { %>
+                  <img src="/uploads/<%= task.afterImage %>" alt="After Image" />
+                <% } else { %>
+                  <p class="mismatch">❌ Not Uploaded</p>
+                <% } %>
+              </div>
+            </div>
+          </div>
+
+          <p><strong>Task Status:</strong>
+            <span class="status <%= task.afterImage ? 'complete' : 'pending' %>">
+              <%= task.afterImage ? 'COMPLETED' : 'PENDING' %>
+            </span>
+          </p>
+        </div>
+      <% }) %>
+
+      <div class="back-btn">
+        <a href="javascript:history.back()"><i class="fas fa-arrow-left"></i> Back</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

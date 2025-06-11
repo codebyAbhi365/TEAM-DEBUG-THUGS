@@ -377,7 +377,7 @@
                 CleanCity Admin
             </div>
         </div>
-        <nav class="sidebar-nav">
+         <nav class="sidebar-nav">
             <a href="/admin" class="nav-item active">
                 <i class="fas fa-clipboard-list"></i>
                 Cleaning Requests
@@ -414,63 +414,68 @@
                 <div class="stat-icon pending">
                     <i class="fas fa-clock"></i>
                 </div>
-                <div class="stat-number"><%= pending_count %></div>
+                <div class="stat-number"></div>
                 <div class="stat-label">Pending Requests</div>
             </div>
             <div class="stat-card">
                 <div class="stat-icon approved">
                     <i class="fas fa-check-circle"></i>
                 </div>
-                <div class="stat-number"><%= approved_count %></div>
+                <div class="stat-number"></div>
                 <div class="stat-label">Approved</div>
             </div>
             <div class="stat-card">
                 <div class="stat-icon rejected">
                     <i class="fas fa-times-circle"></i>
                 </div>
-                <div class="stat-number"><%= rejected_count %></div>
+                <div class="stat-number"></div>
                 <div class="stat-label">Rejected</div>
             </div>
         </div>
 
         <section class="request-list">
-            <% complaints.forEach(complain => { %>
-                <% if (complain.status === 'pending') { %>
-                <div class="request-card priority-high">
+            <% accepted.complains.forEach(complain => { %>
+                <% if (complain.status === 'task-submitted') { %>
+                    <div class="request-card priority-high">
                     <div class="request-image">
-                        <img src="/uploads/<%= complain.Image %>" >
+                        <img src="/uploads/<%= complain.Image %>" alt="Complaint Image">
                         <div class="status-badge">Pending</div>
                     </div>
-                    <div class="request-info">
+                    
+                    <div class="request-info">  
                         <div class="request-header">
-                            <h2><i class="fas fa-map-marker-alt"><%= complain.Area %></i></h2>
-                            <div class="request-meta">
-                                <div class="meta-item">
-                                    <i class="fas fa-calendar"></i>
-                                    March 24, 2025
-                                </div>
-                                <div class="meta-item">
-                                    <i class="fas fa-user"></i>
-                                    <%= complain.Name %>
-                                </div>
-                                <div class="meta-item">
-                                    <i class="fas fa-exclamation-triangle"></i>
-                                    High Priority
-                                </div>
+                        <h2><i class="fas fa-map-marker-alt"></i> <%= complain.Area %></h2>
+                        <div class="request-meta">
+                            <div class="meta-item">
+                            <i class="fas fa-calendar"></i>
+                            March 24, 2025
                             </div>
+                            <div class="meta-item">
+                            <i class="fas fa-user"></i>
+                            <%= complain.Name %>
+                            </div>
+                            <div class="meta-item">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            High Priority
+                            </div>
+                            
                         </div>
-                        <p class="request-description">
-                            Overflowing garbage and water clogging behind dairy facility. The area has become a breeding ground for mosquitoes and other pests, creating health hazards for nearby residents. Immediate attention required to prevent disease spread.
-                        </p>
+                        </div>
+                        
+
                         <div class="request-actions">
-                            <button class="action-btn accept-btn"  onclick="approveComplaint('<%= complain._id %>')" class="btn btn-success"><i class="fas fa-check"></i>✔ ACCEPT</button>
-                            <button class="action-btn reject-btn" onclick="rejectComplaint('<%= complain._id %>')" class="btn btn-danger"><i class="fas fa-times"></i>❌ REJECT</button>
+                            <button onclick="location.href='/verify/details/<%= complain._id %>'">View Details</button>
+                            <button class="action-btn accept-btn" onclick="approveComplaint('<%= complain._id %>')">
+                                <i class="fas fa-check"></i> ✔ ACCEPT
+                            </button>
+                            <button class="action-btn reject-btn" onclick="rejectComplaint('<%= complain._id %>')">
+                                <i class="fas fa-times"></i> ❌ REJECT
+                            </button>
                         </div>
                     </div>
-                </div>
-             
+                    </div>
                 <% } %>
-            <% }) %>
+                <% }) %>
 
         </section>
 
@@ -508,36 +513,32 @@
             }, 1500);
         }
         
-        function approveComplaint(id) {
-            fetch(`/approve/${id}`, {
-                method: 'POST'
-            })
-            .then(res => res.text())
-            .then(data => {
-            alert(data);
-                location.reload(); // Optional: reload to update status on page
-            })
-            .catch(err => {
-                console.error('Approval failed:', err);
-            });
-        }
+         function approveComplaint(id) {
+    fetch(`/complaint/${id}/accept`, {
+      method: 'POST'
+    })
+    .then(response => {
+      if (response.ok) {
+        alert("Complaint marked as complete.");
+        location.reload(); // or remove the element from DOM
+      }
+    })
+    .catch(error => console.error(error));
+  }
+
 
         function rejectComplaint(id) {
-            if (confirm('Are you sure you want to reject and delete this complaint?')) {
-            fetch(`/reject/${id}`, {
-                method: 'DELETE'
-            })
-            .then(res => res.text())
-            .then(data => {
-                alert(data);
-                location.reload(); // refresh to remove rejected complaint
-            })
-            .catch(err => {
-                console.error('Rejection failed:', err);
-            });
-            }
-        }
-
+    fetch(`/complaint/${id}/reject`, {
+      method: 'POST'
+    })
+    .then(response => {
+      if (response.ok) {
+        alert("Complaint rejected and deleted.");
+        location.reload();
+      }
+    })
+    .catch(error => console.error(error));
+  }
 
 
         // Add some interactive effects

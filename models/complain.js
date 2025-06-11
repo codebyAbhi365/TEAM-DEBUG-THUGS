@@ -19,7 +19,7 @@ const cschema=mongoose.Schema({
     type:String,
     required:false
    },
-   status: { type: String, enum: ['pending', 'approved', 'rejected', 'userAccepted', 'complete'], default: 'pending' }
+   status: { type: String, enum: ['pending', 'approved', 'rejected', 'userAccepted', 'task-submitted', 'complete'], default: 'pending' }
 
 })
 

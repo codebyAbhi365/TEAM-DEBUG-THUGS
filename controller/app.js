@@ -17,6 +17,7 @@ const Accepted = require("../models/request");
 // }
 
 // Function to show user profile
+
 async function showProfile(req, res) {
     try {
         const userUid = req.cookies?.uid;

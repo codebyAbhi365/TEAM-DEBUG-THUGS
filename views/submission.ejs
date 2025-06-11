@@ -54,7 +54,7 @@
         }
 
         .content-container {
-            max-width: 500px;
+            max-width: 580px;
             width: 95%;
             margin: 0 auto;
             background: white;
@@ -285,24 +285,27 @@
             <div class="form-container">
                 
                 <input type="text" name="name" placeholder="Your Name">
-                <input type="text"  name="id" placeholder="Task ID">
+                <input type="text"  name="taskId" placeholder="Task ID">
                 <input type="text" name="location" placeholder="Address">
 
+                <!-- Before Image -->
                 <div class="upload-section">
-                    <input type="file" id="beforeImage" accept="image/*" hidden>
+                    <input type="file" name="beforeImage" id="beforeImage" accept="image/*" hidden>
                     <input type="text" id="beforeImageText" placeholder="Before Image" readonly>
                     <button type="button" class="upload-btn" onclick="document.getElementById('beforeImage').click()">
                         <i class="fas fa-camera"></i> Before Photo
                     </button>
                 </div>
-                
+
+                <!-- After Image -->
                 <div class="upload-section">
-                    <input type="file" id="afterImage" accept="image/*" hidden>
+                    <input type="file" name="afterImage" id="afterImage" accept="image/*" hidden>
                     <input type="text" id="afterImageText" placeholder="After Image" readonly>
                     <button type="button" class="upload-btn" onclick="document.getElementById('afterImage').click()">
                         <i class="fas fa-camera"></i> After Photo
                     </button>
                 </div>
+
 
 
                 <input type="text" id="locationInput" name="livelocation" placeholder="Fetching your location..." readonly>
@@ -318,17 +321,24 @@
 
             <div class="complaints-container">
                 <% accepted.forEach(element => { %>
-                <div class="task-card">
-                    <img src="/uploads/<%= element.Image %>" alt="Task Image">
-                    <div class="task-info">
-                        <p><i class="fas fa-user"></i> <%= element.Name %></p>
-                        <p><i class="fas fa-map-marker-alt"></i> <%= element.Location %></p>
-                        <div class="completed-btn">Mark Completed</div>
-                    </div>
-                </div>
+                    <% if (element.status === "userAccepted" ) { %>
+                        <div class="task-card">
+                        <img src="/uploads/<%= element.Image %>" alt="Task Image">
+                        <div class="task-info">
+                            <p>
+                                ID: <span class="copyId" style="cursor: pointer;" title="Click to copy"> <%= element.id %><i class="fas fa-copy"></i></span>
+
+                            </p>
+                            <p><i class="fas fa-user"></i> <%= element.Name %></p>
+                            <p><i class="fas fa-map-marker-alt"></i> <%= element.Location %></p>
+                            <div class="completed-btn">Mark Completed</div>
+                            </div>
+                        </div>
+                    <% } %>
                 <% }) %>
             </div>
         </div>
+                
 
 
 
@@ -404,6 +414,55 @@
         // Run on load and resize
         window.addEventListener('load', adjustContentPadding);
         window.addEventListener('resize', adjustContentPadding);
+
+       document.addEventListener('DOMContentLoaded', () => {
+  const copyIdSpans = document.querySelectorAll('.copyId');
+
+  copyIdSpans.forEach(span => {
+    span.addEventListener('click', () => {
+      const idToCopy = span.textContent.trim();
+
+      navigator.clipboard.writeText(idToCopy)
+        .then(() => {
+          alert('ID copied to clipboard!');
+        })
+        .catch(err => {
+          console.error('Failed to copy ID:', err);
+          alert('Failed to copy ID. Please copy manually.');
+          fallbackCopyTextToClipboard(idToCopy);
+        });
+    });
+  });
+});
+span.textContent = "Copied!";
+setTimeout(() => {
+  span.textContent = idToCopy;
+}, 1000);
+
+// Fallback function for older browsers (less common now, but good to have)
+function fallbackCopyTextToClipboard(text) {
+  const textArea = document.createElement("textarea");
+  textArea.value = text;
+
+  // Avoid scrolling to bottom
+  textArea.style.top = "0";
+  textArea.style.left = "0";
+  textArea.style.position = "fixed";
+
+  document.body.appendChild(textArea);
+  textArea.focus();
+  textArea.select();
+
+  try {
+    const successful = document.execCommand('copy');
+    const msg = successful ? 'successful' : 'unsuccessful';
+    console.log('Fallback: Copying text command was ' + msg);
+  } catch (err) {
+    console.error('Fallback: Oops, unable to copy', err);
+  }
+
+  document.body.removeChild(textArea);
+}
 
 
     </script>
