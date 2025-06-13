@@ -918,6 +918,25 @@
                         <h2 class="location-title">
                             Complain Raiser: <%= complain.Name %>
                         </h2>
+                        <br>
+                        <h2 class="location">
+                            Location:
+                            <% 
+                            const regex = /Lat:\s*(-?\d+\.?\d*),\s*Lon:\s*(-?\d+\.?\d*)/;
+                            const match = complain.Location?.match(regex);
+                            %>
+                            <% if (match) { %>
+                                <a 
+                                href="https://www.google.com/maps?q=<%= match[1] %>,<%= match[2] %>" 
+                                target="_blank" 
+                                style="color: #007bff; text-decoration: underline; margin-left: 5px;">
+                                    View on Google Maps
+                                </a>
+                            <% } else { %>
+                                <span style="color: grey; font-size: 14px;">Not available</span>
+                            <% } %>
+                        </h2>
+
                         <p style="margin-top: 10px;" class="location-description">This area needs immediate attention with significant waste
                             accumulation affecting local residents. Join us to transform this space into a clean
                             environment.</p>
@@ -928,26 +947,26 @@
     
                         <div class="location-stats">
                             <div class="stat">
-                                <div class="stat-value">12</div>
-                                <div class="stat-label">Volunteers</div>
+                                <!-- <div class="stat-value">12</div>
+                                <div class="stat-label">Volunteers</div> -->
                             </div>
                             <div class="stat">
-                                <div class="stat-value">68%</div>
-                                <div class="stat-label">Completed</div>
+                                <!-- <div class="stat-value">68%</div>
+                                <div class="stat-label">Completed</div> -->
                             </div>
                             <div class="stat">
-                                <div class="stat-value">2</div>
-                                <div class="stat-label">Days Left</div>
+                                <!-- <div class="stat-value">2</div>
+                                <div class="stat-label">Days Left</div> -->
                             </div>
                         </div>
                     </div>
     
                     <div class="location-footer">
-                        <div class="volunteers">
+                        <!-- <div class="volunteers">
                             <div class="volunteer">S</div>
                             <div class="volunteer">A</div>
                             <div class="volunteer">+9</div>
-                        </div>
+                        </div> -->
                         <form action="/home/accepted/<%= complain.id %>" method="POST">
                             <input type="hidden" name="complaintId" value="<%= complain._id %>">
                             <button type="submit" class="join-btn pulse">

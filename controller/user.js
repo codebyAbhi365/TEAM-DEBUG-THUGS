@@ -23,7 +23,7 @@ async function createUser(req, res){
     });
 
     console.log(Name);
-    return res.redirect(`/home`);
+    return res.redirect(`/login`);
 }
 
 async function loginUser(req, res){

@@ -41,12 +41,16 @@ adminRouter.get("/completeVerify", async(req, res) => {
   console.log(userId)
   
   // Find accepted complaints for the logged-in user and populate the complains field
-  const acceptedData = await Accepted.findOne({ userId}).populate("complains");
+  // const acceptedData = await Accepted.findOne({ userId}).populate("complains");
   // console.log(acceptedData)
+  const complaints = await complainmodel.find();
 
   const tasks = await task.find({status : "pending"})
+  console.log(tasks);
   // return res.render("verifyForComplete.ejs", { accepted: acceptedData}, {tasks:tasks});
-  return res.render("verifyForComplete.ejs", { accepted: acceptedData, tasks: tasks });
+  // return res.render("verifyForComplete.ejs", { accepted: acceptedData, tasks: tasks });
+  return res.render("verifyForComplete.ejs", { complaints, tasks: tasks });
+
 
 });
 
