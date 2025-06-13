@@ -37,7 +37,7 @@ adminRouter.get("/admin", async(req, res)=>{
 adminRouter.get("/completeVerify", async(req, res) => {
   // const complaints = await complainmodel.find({status : task-submitted});
   const userId = req.cookies?.id;  // Get the user ID from cookies
-  if (!userId) return res.status(400).send("User not authenticated");
+  // if (!userId) return res.status(400).send("User not authenticated");
   console.log(userId)
   
   // Find accepted complaints for the logged-in user and populate the complains field
